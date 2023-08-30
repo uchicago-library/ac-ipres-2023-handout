@@ -1,6 +1,6 @@
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 
-#+Author: Matt Teichman, Drew Olson
+#+Author: Nishchay Karle, Obi Obetta, Matt Teichman
 #+Title: Attachment Converter Workshop, iPres 2023
 
 test text
