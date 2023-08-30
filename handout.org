@@ -24,7 +24,10 @@ advance of the workshop and type along with us as we walk through some
 illustrative examples of the email format.  If you aren't feeling
 tech-savvy, you should be able to just watch and follow along.  Either
 way, we are really looking forward to engaging with your questions and
-comments as we show you how to use our new tool.
+comments as we show you how to use our new tool.  If you aren't sure
+how tech-savvy you're feeling, the question to ask is whether you're
+comfortable opening the Terminal application on your computer and
+working at the command prompt.
 
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
@@ -35,12 +38,45 @@ workshop.
 
 * Advance Preparation
 
-dude
+The software you'll need to install for the workshop is slightly
+different, depending on whether you're working in Windows or macOS.
+Either way, you will need to have privileges on your machine that
+allow you to install software, so if you're attending this conference
+from a work machine, that might be something worth checking in
+advance.
 
-[[https://gnu.org][here's a link]]
+** macOS
 
-=here's some fixed-width text=
+If you're on a Mac, you'll need to open a Terminal, then install an
+open-source package manager, two different kinds of version control
+software, and the GNU Make build tool.  We'll go through those steps
+next, but if you're on Windows, please skip to the section entitled
+[[*Windows (Debian WSL)][Windows (Debian WSL)]]
 
-** test subsection
+*** open-source package manager
 
-test text
+We recommend using Homebrew.  If you've never used it before, you'll
+first need to install XCode Command Line Tools, which you can do by
+running this command in your Terminal:
+
+#+begin_example
+  $ xcode-select --install
+#+end_example
+
+Then you can install Homebrew by following the instructions here:
+
+https://brew.sh/
+
+Or, equivalently, by typing this command:
+
+#+LATEX: \footnotesize
+
+#+begin_example
+  $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#+end_example
+
+#+LATEX: \normalsize
+
+** Windows (Debian WSL)
+
+testing
