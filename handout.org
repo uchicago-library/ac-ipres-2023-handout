@@ -3,9 +3,37 @@
 #+Author: Nishchay Karle, Obi Obetta, Matt Teichman
 #+Title: Attachment Converter Workshop, iPres 2023
 
-test text
+#+OPTIONS: toc:nil num:nil tags:nil email:off ^:{} ':t
+#+LATEX_CLASS: article
+#+LATEX_HEADER: \usepackage[margin=1.1in]{geometry}
+#+LATEX_HEADER: \usepackage[hang]{footmisc}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \setlength{\parskip}{1.8ex plus 0.25ex minus 0.25ex}
+#+LATEX_HEADER: \setlength{\headsep}{2.5em}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \setstretch{1.1}
 
-* test section
+Welcome to the Attachment Converter Workshop at iPres 2023!  In this
+session, we'll walk you through our new open source application,
+Attachment Converter, which batch-converts all attachments in an email
+mailbox to preservation formats.
+
+There are two ways to participate in this workshop.  If you're feeling
+tech-savvy, we would encourage you to install the required software in
+advance of the workshop and type along with us as we walk through some
+illustrative examples of the email format.  If you aren't feeling
+tech-savvy, you should be able to just watch and follow along.  Either
+way, we are really looking forward to engaging with your questions and
+comments as we show you how to use our new tool.
+
+In the next section, we'll go through how to install the software
+you'll need if you want to participate in the workshop by typing along
+on your own machines.  If you're planning to simply attend, watch,
+listen, and ask questions, please feel free to skip that section---you
+won't need to set anything up on your computer in advance of the
+workshop.
+
+* Advance Preparation
 
 dude
 
