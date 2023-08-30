@@ -48,16 +48,17 @@ advance.
 ** macOS
 
 If you're on a Mac, you'll need to open a Terminal, then install an
-open-source package manager, two different kinds of version control
-software, and the GNU Make build tool.  We'll go through those steps
-next, but if you're on Windows, please skip to the section entitled
-[[*Windows (Debian WSL)][Windows (Debian WSL)]]
+open-source package manager, the =git= version control system, the [[https://www.gnu.org/software/make/][GNU
+Make]] build tool, and the =libpst= package.  We'll go through those
+steps next, but if you're on Windows, please skip to the section
+entitled [[windows][Windows (Debian WSL)]].
 
 *** open-source package manager
 
-We recommend using Homebrew.  If you've never used it before, you'll
-first need to install XCode Command Line Tools, which you can do by
-running this command in your Terminal:
+There are various options for open source package managers on macOS,
+but we recommend using [[Homebrew][https://brew.sh]].  If you've never used it
+before, you'll first need to install XCode Command Line Tools, which
+you can do by running this command in your Terminal:
 
 #+begin_example
   $ xcode-select --install
@@ -77,6 +78,9 @@ Or, equivalently, by typing this command:
 
 #+LATEX: \normalsize
 
-** Windows (Debian WSL)
+*** OCaml package manager
 
-testing
+Next, we'd like you to install the OCaml package manager
+
+** Windows (Debian WSL) <<windows>>
+
