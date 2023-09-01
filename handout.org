@@ -32,18 +32,21 @@ working at the command prompt.
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
-listen, and ask questions, please feel free to skip that section---you
-won't need to set anything up on your computer in advance of the
-workshop.
+listen, and ask questions, please feel free to skip the [[advance][Advance
+Preparation]] section---you won't need to set anything up on your
+computer in advance of the workshop.
 
-* Advance Preparation
+* Advance Preparation <<advance>>
+
+If you're planning to type along with us on your computer during the
+workshop, then this is the section for you!
 
 The software you'll need to install for the workshop is slightly
 different, depending on whether you're working in Windows or macOS.
 Either way, you will need to have privileges on your machine that
 allow you to install software, so if you're attending this conference
-from a work machine, that might be something worth checking in
-advance.
+from a work machine, that might be something worth looking into with
+your system administrator.
 
 ** macOS
 
@@ -53,10 +56,15 @@ Make]] build tool, and the =libpst= package.  We'll go through those
 steps next, but if you're on Windows, please skip to the section
 entitled [[windows][Windows (Debian WSL)]].
 
-*** open-source package manager
+Remember: to follow these instructions, you'll need to have the
+ability to install software on your machine, so if you don't, you may
+want to reach out to your system administrator to see whether they can
+grant you the right privileges.
+
+*** Install Homebrew
 
 There are various options for open source package managers on macOS,
-but we recommend using [[Homebrew][https://brew.sh]].  If you've never used it
+but we recommend using [[https://brew.sh][Homebrew]].  If you've never used it
 before, you'll first need to install XCode Command Line Tools, which
 you can do by running this command in your Terminal:
 
@@ -78,9 +86,104 @@ Or, equivalently, by typing this command:
 
 #+LATEX: \normalsize
 
-*** OCaml package manager
+*** Install Version Control Software
 
-Next, we'd like you to install the OCaml package manager
+Now that you've installed Homebrew, the next step is to install Git,
+which is what we will use to download the source code for the project
+and compile it into an executable that you can run.  To do so, run
+this command:
+
+#+begin_example
+  $ brew install git
+#+end_example
+
+*** Install Libpst
+
+The last thing we'll ask you to install is Libpst, the software we
+will use to convert from Outlook =.pst= to MBOX format during the
+workshop.  To install that, run:
+
+#+begin_example
+  $ brew install libpst
+#+end_example
+
+Once you've reached this point on your Mac, you can skip the next
+section---which is our Windows-specific setup instructions---and
+proceed straight to the section called [[compile][Compile Attachment Converter]].
 
 ** Windows (Debian WSL) <<windows>>
 
+Attachment Converter is a UNIX application, which means that in order
+to run it on Windows, you'll need to install the [[https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux][Windows Subsystem for
+Linux]].  We chose Debian as a Linux distribution for this purpose,
+because Debian has full out-of-the-box support for OCaml, the
+programming language that Attachment Converter was written in.
+
+So first, you'll install the Debian WSL.  Once that's set up, you'll
+open up a Debian WSL Terminal and do everything else from inside that
+Terminal, including installing a few more utilities, as well as
+running Attachment Converter itself.
+
+Note that you need to have privileges to install software on your
+machine to follow these instructions.  If you don't, check with your
+system administrator about how to get them.
+
+*** Set up the Debian WSL
+
+First, open up the Microsoft Store application using your Start Menu.
+When it opens, there should be a search box at the top of the window
+that says something like: "Search apps, games, movies and more".  Type
+"Debian" in the search box and hit Enter.  A list of search results
+will then come up, and the one you want is called Debian.
+Double-click on that, and click through the installation buttons,
+prompts, etc. that come up.  During the installation process, you will
+be asked to choose a username and password for your Linux subsystem.
+Make sure to write those credentials down and keep them available for
+reference! You may need to reboot your Windows machine after you
+finish.
+
+Once you've rebooted and logged back in, you should be able to open a
+Debian WSL Terminal by running an application called "Debian" from
+your Start Menu.  It will ask you to log in using the username and
+password you chose during the installation process.
+
+*** Install Version Control Software
+
+Now that your UNIX environment is set up, the next step is to install
+version control software, which in this case is Git.  To do that, run
+this command:
+
+#+begin_example
+  $ sudo apt install git
+#+end_example
+
+This is the utility we will use to get the latest version of the
+source code for Attachment Converter, later in these setup
+instructions.
+
+*** Install GNU Make
+
+The software we're going to use to compile Attachment Converter is
+called Make.  To install it, run this command:
+
+#+begin_example
+  $ sudo apt install make
+#+end_example
+
+*** Install Libpst
+
+Finally, we're going to ask you to install Libpst, which is a freely
+available utility for converting Outlook =.pst= files to MBOX
+format---the email mailbox format that Attachment Converter uses.
+
+Once you've reached this point on your Windows machine, you're ready
+to go to the next section, in which we show you how to compile
+Attachment Converter into an executable that you can run.
+
+** Compile Attachment Converter <<compile>>
+
+Now that you're set up with the basic software you need, whether
+you're on Windows or a Mac, the next step is to download the source
+code for Attachment Converter, compile it into an executable you can
+run, and put the executable in a location where your Terminal can see
+it.
