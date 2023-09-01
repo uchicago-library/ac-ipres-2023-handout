@@ -187,3 +187,15 @@ you're on Windows or a Mac, the next step is to download the source
 code for Attachment Converter, compile it into an executable you can
 run, and put the executable in a location where your Terminal can see
 it.
+
+*** Compiling
+
+The utility we're going to use to compile Attachment Converter is
+called Make.  If you're on Windows, we told you to install that in the
+previous section.  If you're on a Mac, then you already have Make
+installed on your computer.
+
+Attachment Converter has a lot of moving parts, which means that
+installing it involves installing some more standard utilities and
+copying a bunch of different files to a bunch of different places in
+your home directory.  What Make will do is 

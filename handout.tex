@@ -1,4 +1,4 @@
-% Created 2023-09-01 Fri 13:57
+% Created 2023-09-01 Fri 14:00
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -51,12 +51,12 @@ working at the command prompt.
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
-listen, and ask questions, please feel free to skip the \hyperref[orgcc268b8]{Advance
+listen, and ask questions, please feel free to skip the \hyperref[orgb850bad]{Advance
 Preparation} section---you won't need to set anything up on your
 computer in advance of the workshop.
 
-\section*{Advance Preparation \label{orgcc268b8}}
-\label{sec:org619fbd6}
+\section*{Advance Preparation \label{orgb850bad}}
+\label{sec:org41fbcab}
 
 If you're planning to type along with us on your computer during the
 workshop, then this is the section for you!
@@ -69,13 +69,13 @@ from a work machine, that might be something worth looking into with
 your system administrator.
 
 \subsection*{macOS}
-\label{sec:org0a73dc0}
+\label{sec:orgb658726}
 
 If you're on a Mac, you'll need to open a Terminal, then install an
 open-source package manager, the \texttt{git} version control system, the \href{https://www.gnu.org/software/make/}{GNU
 Make} build tool, and the \texttt{libpst} package.  We'll go through those
 steps next, but if you're on Windows, please skip to the section
-entitled \hyperref[org5a48eb5]{Windows (Debian WSL)}.
+entitled \hyperref[orgad22b61]{Windows (Debian WSL)}.
 
 Remember: to follow these instructions, you'll need to have the
 ability to install software on your machine, so if you don't, you may
@@ -83,7 +83,7 @@ want to reach out to your system administrator to see whether they can
 grant you the right privileges.
 
 \subsubsection*{Install Homebrew}
-\label{sec:org60e9205}
+\label{sec:org0a674a3}
 
 There are various options for open source package managers on macOS,
 but we recommend using \href{https://brew.sh}{Homebrew}.  If you've never used it
@@ -109,7 +109,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 \normalsize
 
 \subsubsection*{Install Version Control Software}
-\label{sec:org0e5540e}
+\label{sec:org521c1d5}
 
 Now that you've installed Homebrew, the next step is to install Git,
 which is what we will use to download the source code for the project
@@ -121,7 +121,7 @@ $ brew install git
 \end{verbatim}
 
 \subsubsection*{Install Libpst}
-\label{sec:org05d64e0}
+\label{sec:org3875fa5}
 
 The last thing we'll ask you to install is Libpst, the software we
 will use to convert from Outlook \texttt{.pst} to MBOX format during the
@@ -133,10 +133,10 @@ $ brew install libpst
 
 Once you've reached this point on your Mac, you can skip the next
 section---which is our Windows-specific setup instructions---and
-proceed straight to the section called \hyperref[org8030e04]{Compile Attachment Converter}.
+proceed straight to the section called \hyperref[orgb563d22]{Compile Attachment Converter}.
 
-\subsection*{Windows (Debian WSL) \label{org5a48eb5}}
-\label{sec:orgddbd234}
+\subsection*{Windows (Debian WSL) \label{orgad22b61}}
+\label{sec:orgadd7de7}
 
 Attachment Converter is a UNIX application, which means that in order
 to run it on Windows, you'll need to install the \href{https://en.wikipedia.org/wiki/Windows\_Subsystem\_for\_Linux}{Windows Subsystem for
@@ -154,7 +154,7 @@ machine to follow these instructions.  If you don't, check with your
 system administrator about how to get them.
 
 \subsubsection*{Set up the Debian WSL}
-\label{sec:org9750dcf}
+\label{sec:org6e08db3}
 
 First, open up the Microsoft Store application using your Start Menu.
 When it opens, there should be a search box at the top of the window
@@ -174,7 +174,7 @@ your Start Menu.  It will ask you to log in using the username and
 password you chose during the installation process.
 
 \subsubsection*{Install Version Control Software}
-\label{sec:orgec6c2ca}
+\label{sec:orgee825ba}
 
 Now that your UNIX environment is set up, the next step is to install
 version control software, which in this case is Git.  To do that, run
@@ -189,7 +189,7 @@ source code for Attachment Converter, later in these setup
 instructions.
 
 \subsubsection*{Install GNU Make}
-\label{sec:orgef14f90}
+\label{sec:org26e02a3}
 
 The software we're going to use to compile Attachment Converter is
 called Make.  To install it, run this command:
@@ -199,7 +199,7 @@ $ sudo apt install make
 \end{verbatim}
 
 \subsubsection*{Install Libpst}
-\label{sec:org3405370}
+\label{sec:orgbd24815}
 
 Finally, we're going to ask you to install Libpst, which is a freely
 available utility for converting Outlook \texttt{.pst} files to MBOX
@@ -209,12 +209,25 @@ Once you've reached this point on your Windows machine, you're ready
 to go to the next section, in which we show you how to compile
 Attachment Converter into an executable that you can run.
 
-\subsection*{Compile Attachment Converter \label{org8030e04}}
-\label{sec:orgc34e73b}
+\subsection*{Compile Attachment Converter \label{orgb563d22}}
+\label{sec:org7b89cf4}
 
 Now that you're set up with the basic software you need, whether
 you're on Windows or a Mac, the next step is to download the source
 code for Attachment Converter, compile it into an executable you can
 run, and put the executable in a location where your Terminal can see
 it.
+
+\subsubsection*{Compiling}
+\label{sec:orgb87093e}
+
+The utility we're going to use to compile Attachment Converter is
+called Make.  If you're on Windows, we told you to install that in the
+previous section.  If you're on a Mac, then you already have Make
+installed on your computer.
+
+Attachment Converter has a lot of moving parts, which means that
+installing it involves installing some more standard utilities and
+copying a bunch of different files to a bunch of different places in
+your home directory.  What Make will do is 
 \end{document}
