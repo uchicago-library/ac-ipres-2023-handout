@@ -1,4 +1,4 @@
-% Created 2023-09-01 Fri 14:00
+% Created 2023-09-06 Wed 12:16
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -37,6 +37,16 @@ session, we'll walk you through our new open source application,
 Attachment Converter, which batch-converts all attachments in an email
 mailbox to preservation formats.
 
+\section*{Project Website}
+\label{sec:orgffd596e}
+
+The project website is located here:
+
+\url{https://dldc.lib.uchicago.edu/open/attachment-converter}
+
+\section*{How to Participate in This Workshop}
+\label{sec:org17762da}
+
 There are two ways to participate in this workshop.  If you're feeling
 tech-savvy, we would encourage you to install the required software in
 advance of the workshop and type along with us as we walk through some
@@ -51,12 +61,12 @@ working at the command prompt.
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
-listen, and ask questions, please feel free to skip the \hyperref[orgb850bad]{Advance
+listen, and ask questions, please feel free to skip the \hyperref[org2d0da06]{Advance
 Preparation} section---you won't need to set anything up on your
 computer in advance of the workshop.
 
-\section*{Advance Preparation \label{orgb850bad}}
-\label{sec:org41fbcab}
+\section*{Advance Preparation \label{org2d0da06}}
+\label{sec:orgf0c550d}
 
 If you're planning to type along with us on your computer during the
 workshop, then this is the section for you!
@@ -69,21 +79,21 @@ from a work machine, that might be something worth looking into with
 your system administrator.
 
 \subsection*{macOS}
-\label{sec:orgb658726}
+\label{sec:org4b905a9}
 
 If you're on a Mac, you'll need to open a Terminal, then install an
 open-source package manager, the \texttt{git} version control system, the \href{https://www.gnu.org/software/make/}{GNU
 Make} build tool, and the \texttt{libpst} package.  We'll go through those
 steps next, but if you're on Windows, please skip to the section
-entitled \hyperref[orgad22b61]{Windows (Debian WSL)}.
+entitled \hyperref[orga74c73d]{Windows (Debian WSL)}.
 
 Remember: to follow these instructions, you'll need to have the
 ability to install software on your machine, so if you don't, you may
 want to reach out to your system administrator to see whether they can
-grant you the right privileges.
+grant you the appropriate privileges for doing so.
 
 \subsubsection*{Install Homebrew}
-\label{sec:org0a674a3}
+\label{sec:org048cbb6}
 
 There are various options for open source package managers on macOS,
 but we recommend using \href{https://brew.sh}{Homebrew}.  If you've never used it
@@ -109,7 +119,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 \normalsize
 
 \subsubsection*{Install Version Control Software}
-\label{sec:org521c1d5}
+\label{sec:org7050c54}
 
 Now that you've installed Homebrew, the next step is to install Git,
 which is what we will use to download the source code for the project
@@ -121,7 +131,7 @@ $ brew install git
 \end{verbatim}
 
 \subsubsection*{Install Libpst}
-\label{sec:org3875fa5}
+\label{sec:orgf898f36}
 
 The last thing we'll ask you to install is Libpst, the software we
 will use to convert from Outlook \texttt{.pst} to MBOX format during the
@@ -133,10 +143,10 @@ $ brew install libpst
 
 Once you've reached this point on your Mac, you can skip the next
 section---which is our Windows-specific setup instructions---and
-proceed straight to the section called \hyperref[orgb563d22]{Compile Attachment Converter}.
+proceed straight to the section called \hyperref[org336cbed]{Compile Attachment Converter}.
 
-\subsection*{Windows (Debian WSL) \label{orgad22b61}}
-\label{sec:orgadd7de7}
+\subsection*{Windows (Debian WSL) \label{orga74c73d}}
+\label{sec:orgec85940}
 
 Attachment Converter is a UNIX application, which means that in order
 to run it on Windows, you'll need to install the \href{https://en.wikipedia.org/wiki/Windows\_Subsystem\_for\_Linux}{Windows Subsystem for
@@ -154,19 +164,24 @@ machine to follow these instructions.  If you don't, check with your
 system administrator about how to get them.
 
 \subsubsection*{Set up the Debian WSL}
-\label{sec:org6e08db3}
+\label{sec:orgb2dd17c}
 
-First, open up the Microsoft Store application using your Start Menu.
-When it opens, there should be a search box at the top of the window
-that says something like: ``Search apps, games, movies and more''.  Type
-``Debian'' in the search box and hit Enter.  A list of search results
-will then come up, and the one you want is called Debian.
-Double-click on that, and click through the installation buttons,
-prompts, etc. that come up.  During the installation process, you will
-be asked to choose a username and password for your Linux subsystem.
-Make sure to write those credentials down and keep them available for
-reference! You may need to reboot your Windows machine after you
-finish.
+To set up the Debian WSL:
+
+\begin{itemize}
+\item open up the Microsoft Store application using your Start Menu
+\item there should be a search box at the top of the window that opens
+\item type ``Debian'' in the search box and hit Enter
+\item a list of search results will come up; double-click on the one
+called Debian
+\item click through the installation buttons, prompts, etc. that come up
+\item you will eventually be asked to choose a username and password for
+your Linux subsystem
+\item don't forget to write those credentials down and keep them available
+for reference
+\item the installer will ask you to reboot your machine, which completes
+the process
+\end{itemize}
 
 Once you've rebooted and logged back in, you should be able to open a
 Debian WSL Terminal by running an application called ``Debian'' from
@@ -174,7 +189,7 @@ your Start Menu.  It will ask you to log in using the username and
 password you chose during the installation process.
 
 \subsubsection*{Install Version Control Software}
-\label{sec:orgee825ba}
+\label{sec:org34714b1}
 
 Now that your UNIX environment is set up, the next step is to install
 version control software, which in this case is Git.  To do that, run
@@ -184,12 +199,16 @@ this command:
 $ sudo apt install git
 \end{verbatim}
 
+Note that the first time you run a command with the prefix \texttt{sudo}, you
+will be prompted for a password.  If that happens, use the password
+that you chose for your UNIX account when you set up the Debian WSL.
+
 This is the utility we will use to get the latest version of the
 source code for Attachment Converter, later in these setup
 instructions.
 
 \subsubsection*{Install GNU Make}
-\label{sec:org26e02a3}
+\label{sec:org02a64a1}
 
 The software we're going to use to compile Attachment Converter is
 called Make.  To install it, run this command:
@@ -199,18 +218,23 @@ $ sudo apt install make
 \end{verbatim}
 
 \subsubsection*{Install Libpst}
-\label{sec:orgbd24815}
+\label{sec:orgeec02fe}
 
 Finally, we're going to ask you to install Libpst, which is a freely
 available utility for converting Outlook \texttt{.pst} files to MBOX
-format---the email mailbox format that Attachment Converter uses.
+format---the email mailbox format that Attachment Converter uses.  To
+install it:
+
+\begin{verbatim}
+$ sudo apt install libpst
+\end{verbatim}
 
 Once you've reached this point on your Windows machine, you're ready
 to go to the next section, in which we show you how to compile
 Attachment Converter into an executable that you can run.
 
-\subsection*{Compile Attachment Converter \label{orgb563d22}}
-\label{sec:org7b89cf4}
+\subsection*{Compile Attachment Converter \label{org336cbed}}
+\label{sec:org6f7b1ec}
 
 Now that you're set up with the basic software you need, whether
 you're on Windows or a Mac, the next step is to download the source
@@ -218,8 +242,50 @@ code for Attachment Converter, compile it into an executable you can
 run, and put the executable in a location where your Terminal can see
 it.
 
-\subsubsection*{Compiling}
-\label{sec:orgb87093e}
+\subsubsection*{Get The Code}
+\label{sec:orgce306e5}
+
+The first thing we need to do is download the source code for
+Attachment Converter.  The simplest way to do that is by using Git.
+
+First, go to the directory on your computer where you would like the
+source code to get downloaded to.  If you aren't sure where that
+should be, you can make a new directory to keep your source code in by
+running these commands:
+
+\begin{verbatim}
+$ cd ~
+$ mkdir src
+$ cd src
+\end{verbatim}
+
+To then download the source code for Attachment Converter using Git,
+run:
+
+\begin{verbatim}
+$ git clone https://github.com/uchicago-library/attachment-converter.git
+\end{verbatim}
+
+As an aside, if you're on Windows and want to view the contents of a
+directory you're in using Windows explorer, you can run this command
+to open up an Explorer window in the current directory:
+
+\begin{verbatim}
+$ explorer.exe .
+\end{verbatim}
+
+If you're on a Mac, you can do the same thing---i.e. view the
+directory you're in in Finder using the \texttt{open} command:
+
+n\#+begin\_example
+  \$ open .
+\#+end\_example
+
+Now that you have the source code for Attachment Converter, the next
+step is to compile it into an executable program.
+
+\subsubsection*{Compiling, the Semi-Automated Way}
+\label{sec:orgd3112d0}
 
 The utility we're going to use to compile Attachment Converter is
 called Make.  If you're on Windows, we told you to install that in the
@@ -229,5 +295,66 @@ installed on your computer.
 Attachment Converter has a lot of moving parts, which means that
 installing it involves installing some more standard utilities and
 copying a bunch of different files to a bunch of different places in
-your home directory.  What Make will do is 
+your home directory.  When you run Make, the full list of things it
+will do is:
+
+\begin{itemize}
+\item install all the free software that Attachment Converter uses to
+convert file attachments
+\item install \texttt{opam}, the package manager for the OCaml programming language
+\item create a location in your home directory for all \texttt{opam} files to go in
+\item install \texttt{dune}, the OCaml build tool, to that location
+\item install all third-party OCaml libraries that are necessary to
+compile Attachment Converter
+\item put a number of different configuration files in places where
+Attachment Converter expects them to be, in order to run
+\end{itemize}
+
+To compile Attachment Converter and then install it, run:
+
+\begin{verbatim}
+$ make home-install
+\end{verbatim}
+
+You'll see a whole bunch of stuff get printed to the screen, which
+should give you an idea of what part of the installation process is
+happening.  It may pause at one point to ask you to type in your
+administrator password.  When the installation process is done, it
+should print a message that looks like this:
+
+\begin{verbatim}
+Attachment Converter has been installed to ~/bin/attc.
+Please ensure that ~/bin is on your path.
+\end{verbatim}
+
+Once the installation process is finished, \texttt{\textasciitilde{}/bin} needs to be on your
+shell path in order for Attachment Converter to run.  If you don't
+know what that means, run this command if you're on Windows:
+
+\begin{verbatim}
+$ echo "export PATH=~/bin:$PATH" >> ~/.bashrc
+\end{verbatim}
+
+And run this command if you're on a Mac:
+
+\begin{verbatim}
+$ echo "export PATH=~/bin:$PATH" >> ~/.zshrc
+\end{verbatim}
+
+Then close and reopen your Terminal.
+
+\subsubsection*{Compiling, the Manual Step-By-Step Way}
+\label{sec:org21f112d}
+
+If you get an error while running Make, another thing you can try is
+to do all the steps that our Make configuration does indivdually.
+Following all these steps should work, if there's an unexpected error
+in our Make configuration.  (Though if you do encounter an error, we
+would love to hear about it, so that we can fix it and update these
+instructions!)
+
+The full instructions for setting Attachment Converter up in the
+non-automated way can be found here:
+
+\url{https://dldc.lib.uchicago.edu/open/attachment-converter/docs/}
 \end{document}

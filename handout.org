@@ -18,6 +18,14 @@ session, we'll walk you through our new open source application,
 Attachment Converter, which batch-converts all attachments in an email
 mailbox to preservation formats.
 
+* Project Website
+
+The project website is located here:
+
+https://dldc.lib.uchicago.edu/open/attachment-converter
+
+* How to Participate in This Workshop
+
 There are two ways to participate in this workshop.  If you're feeling
 tech-savvy, we would encourage you to install the required software in
 advance of the workshop and type along with us as we walk through some
@@ -59,7 +67,7 @@ entitled [[windows][Windows (Debian WSL)]].
 Remember: to follow these instructions, you'll need to have the
 ability to install software on your machine, so if you don't, you may
 want to reach out to your system administrator to see whether they can
-grant you the right privileges.
+grant you the appropriate privileges for doing so.
 
 *** Install Homebrew
 
@@ -130,17 +138,20 @@ system administrator about how to get them.
 
 *** Set up the Debian WSL
 
-First, open up the Microsoft Store application using your Start Menu.
-When it opens, there should be a search box at the top of the window
-that says something like: "Search apps, games, movies and more".  Type
-"Debian" in the search box and hit Enter.  A list of search results
-will then come up, and the one you want is called Debian.
-Double-click on that, and click through the installation buttons,
-prompts, etc. that come up.  During the installation process, you will
-be asked to choose a username and password for your Linux subsystem.
-Make sure to write those credentials down and keep them available for
-reference! You may need to reboot your Windows machine after you
-finish.
+To set up the Debian WSL:
+
++ open up the Microsoft Store application using your Start Menu
++ there should be a search box at the top of the window that opens
++ type "Debian" in the search box and hit Enter
++ a list of search results will come up; double-click on the one
+  called Debian
++ click through the installation buttons, prompts, etc. that come up
++ you will eventually be asked to choose a username and password for
+  your Linux subsystem
++ don't forget to write those credentials down and keep them available
+  for reference
++ the installer will ask you to reboot your machine, which completes
+  the process
 
 Once you've rebooted and logged back in, you should be able to open a
 Debian WSL Terminal by running an application called "Debian" from
@@ -156,6 +167,10 @@ this command:
 #+begin_example
   $ sudo apt install git
 #+end_example
+
+Note that the first time you run a command with the prefix =sudo=, you
+will be prompted for a password.  If that happens, use the password
+that you chose for your UNIX account when you set up the Debian WSL.
 
 This is the utility we will use to get the latest version of the
 source code for Attachment Converter, later in these setup
@@ -174,7 +189,12 @@ called Make.  To install it, run this command:
 
 Finally, we're going to ask you to install Libpst, which is a freely
 available utility for converting Outlook =.pst= files to MBOX
-format---the email mailbox format that Attachment Converter uses.
+format---the email mailbox format that Attachment Converter uses.  To
+install it:
+
+#+begin_example
+  $ sudo apt install libpst
+#+end_example
 
 Once you've reached this point on your Windows machine, you're ready
 to go to the next section, in which we show you how to compile
@@ -188,7 +208,48 @@ code for Attachment Converter, compile it into an executable you can
 run, and put the executable in a location where your Terminal can see
 it.
 
-*** Compiling
+*** Get The Code
+
+The first thing we need to do is download the source code for
+Attachment Converter.  The simplest way to do that is by using Git.
+
+First, go to the directory on your computer where you would like the
+source code to get downloaded to.  If you aren't sure where that
+should be, you can make a new directory to keep your source code in by
+running these commands:
+
+#+begin_example
+  $ cd ~
+  $ mkdir src
+  $ cd src
+#+end_example
+
+To then download the source code for Attachment Converter using Git,
+run:
+
+#+begin_example
+  $ git clone https://github.com/uchicago-library/attachment-converter.git
+#+end_example
+
+As an aside, if you're on Windows and want to view the contents of a
+directory you're in using Windows explorer, you can run this command
+to open up an Explorer window in the current directory:
+
+#+begin_example
+  $ explorer.exe .
+#+end_example
+
+If you're on a Mac, you can do the same thing---i.e. view the
+directory you're in in Finder using the =open= command:
+
+n#+begin_example
+  $ open .
+#+end_example
+
+Now that you have the source code for Attachment Converter, the next
+step is to compile it into an executable program.
+
+*** Compiling, the Semi-Automated Way
 
 The utility we're going to use to compile Attachment Converter is
 called Make.  If you're on Windows, we told you to install that in the
@@ -198,4 +259,104 @@ installed on your computer.
 Attachment Converter has a lot of moving parts, which means that
 installing it involves installing some more standard utilities and
 copying a bunch of different files to a bunch of different places in
-your home directory.  What Make will do is 
+your home directory.  When you run Make, the full list of things it
+will do is:
+
++ install all the free software that Attachment Converter uses to
+  convert file attachments
++ install =opam=, the package manager for the OCaml programming language
++ create a location in your home directory for all =opam= files to go in
++ install =dune=, the OCaml build tool, to that location
++ install all third-party OCaml libraries that are necessary to
+  compile Attachment Converter
++ put a number of different configuration files in places where
+  Attachment Converter expects them to be, in order to run
+
+To compile Attachment Converter and then install it, run:
+
+#+begin_example
+  $ make home-install
+#+end_example
+
+You'll see a whole bunch of stuff get printed to the screen, which
+should give you an idea of what part of the installation process is
+happening.  It may pause at one point to ask you to type in your
+administrator password.  When the installation process is done, it
+should print a message that looks like this:
+
+#+begin_example
+  Attachment Converter has been installed to ~/bin/attc.
+  Please ensure that ~/bin is on your path.
+#+end_example
+
+Once the installation process is finished, =~/bin= needs to be on your
+shell path in order for Attachment Converter to run.  If you don't
+know what that means, run this command if you're on Windows:
+
+#+begin_example
+  $ echo "export PATH=~/bin:$PATH" >> ~/.bashrc
+#+end_example
+
+And run this command if you're on a Mac:
+
+#+begin_example
+  $ echo "export PATH=~/bin:$PATH" >> ~/.zshrc
+#+end_example
+
+Then close and reopen your Terminal.
+
+*** Compiling, the Manual Step-By-Step Way
+
+If you get an error while running Make, another thing you can try is
+to do all the steps that our Make configuration does indivdually.
+Following all these steps should work, if there's an unexpected error
+in our Make configuration.  (Though if you do encounter an error, we
+would love to hear about it, so that we can fix it and update these
+instructions!)
+
+The full instructions for setting Attachment Converter up in the
+non-automated way can be found on our website here:
+
+https://dldc.lib.uchicago.edu/open/attachment-converter/docs/
+
+* For During The Workshop
+
+** Quick Demo
+
+*** Demonstration involving example MBOX
+
+** Background
+
+*** The MBOX format
+
+*** The Anatomy of an Email
+
+**** MIME types
+
+**** Base64 data
+
+*** How To Convert an Outlook =.pst= to =.mbox= Format
+
+** More Detailed Demo
+
+*** Installing Attachment Converter
+
+*** A Simple Example of Running Attachment Converter
+
+*** Looking At The Output
+
+**** The Headers that =attc= inserts
+
+**** The Data that =attc= inserts
+
+** Advanced Configuration
+
+*** Attachment Converter's Configuration File
+
+*** A Glance at our Shell Scripts
+
+**** where they go
+
+**** rough overview of what they do
+
+*** Show and Tell: Here is How To Add a new Utility to Attachment Converter
