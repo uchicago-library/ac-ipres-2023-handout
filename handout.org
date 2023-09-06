@@ -3,7 +3,7 @@
 #+Author: Nishchay Karle, Obi Obetta, Matt Teichman
 #+Title: Attachment Converter Workshop, iPres 2023
 
-#+OPTIONS: toc:nil num:nil tags:nil email:off ^:{} ':t
+#+OPTIONS: toc:nil num:t tags:nil email:off ^:{} ':t
 #+LATEX_CLASS: article
 #+LATEX_HEADER: \usepackage[margin=1.1in]{geometry}
 #+LATEX_HEADER: \usepackage[hang]{footmisc}
@@ -11,6 +11,7 @@
 #+LATEX_HEADER: \setlength{\parskip}{1.8ex plus 0.25ex minus 0.25ex}
 #+LATEX_HEADER: \setlength{\headsep}{2.5em}
 #+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \usepackage{hyperref}
 #+LATEX_HEADER: \setstretch{1.1}
 
 Welcome to the Attachment Converter Workshop at iPres 2023!  In this
@@ -18,7 +19,12 @@ session, we'll walk you through our new open source application,
 Attachment Converter, which batch-converts all attachments in an email
 mailbox to preservation formats.
 
-* Project Website
+Then next few sections of the handout include background on the
+project for your reference, but when the workshop starts, we'll be
+working through the material on this handout starting with section
+[[workshop]].
+
+* Project Website 
 
 The project website is located here:
 
@@ -32,7 +38,7 @@ advance of the workshop and type along with us as we walk through some
 illustrative examples of the email format.  If you aren't feeling
 tech-savvy, you should be able to just watch and follow along.  Either
 way, we are really looking forward to engaging with your questions and
-comments as we show you how to use our new tool.  If you aren't sure
+comments as we show you how to use our new tool. If you aren't sure
 how tech-savvy you're feeling, the question to ask is whether you're
 comfortable opening the Terminal application on your computer and
 working at the command prompt.
@@ -40,9 +46,10 @@ working at the command prompt.
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
-listen, and ask questions, please feel free to skip the [[advance][Advance
-Preparation]] section---you won't need to set anything up on your
-computer in advance of the workshop.
+listen, and ask questions, please feel free to skip to section
+[[workshop]], which is what we'll be working off of during the
+workshop---you won't need to set anything up on your computer in
+advance.
 
 * Advance Preparation <<advance>>
 
@@ -61,8 +68,7 @@ your system administrator.
 If you're on a Mac, you'll need to open a Terminal, then install an
 open-source package manager, the =git= version control system, the [[https://www.gnu.org/software/make/][GNU
 Make]] build tool, and the =libpst= package.  We'll go through those
-steps next, but if you're on Windows, please skip to the section
-entitled [[windows][Windows (Debian WSL)]].
+steps next, but if you're on Windows, please skip to section [[windows]].
 
 Remember: to follow these instructions, you'll need to have the
 ability to install software on your machine, so if you don't, you may
@@ -94,17 +100,6 @@ Or, equivalently, by typing this command:
 
 #+LATEX: \normalsize
 
-*** Install Version Control Software
-
-Now that you've installed Homebrew, the next step is to install Git,
-which is what we will use to download the source code for the project
-and compile it into an executable that you can run.  To do so, run
-this command:
-
-#+begin_example
-  $ brew install git
-#+end_example
-
 *** Install Libpst
 
 The last thing we'll ask you to install is Libpst, the software we
@@ -117,7 +112,7 @@ workshop.  To install that, run:
 
 Once you've reached this point on your Mac, you can skip the next
 section---which is our Windows-specific setup instructions---and
-proceed straight to the section called [[compile][Compile Attachment Converter]].
+proceed straight to section [[compile]].
 
 ** Windows (Debian WSL) <<windows>>
 
@@ -242,7 +237,7 @@ to open up an Explorer window in the current directory:
 If you're on a Mac, you can do the same thing---i.e. view the
 directory you're in in Finder using the =open= command:
 
-n#+begin_example
+#+begin_example
   $ open .
 #+end_example
 
@@ -319,13 +314,43 @@ non-automated way can be found on our website here:
 
 https://dldc.lib.uchicago.edu/open/attachment-converter/docs/
 
-* For During The Workshop
+That concludes our setup instructions!  The rest of this handout
+reflects what we will cover during the workshop proper.
+
+* During The Workshop <<workshop>>
+
+Attachment Converter is a command-line utility that batch-converts all
+attachments in an email mailbox to preservation formats.  You give it
+your email in the form on an MBOX file, and it creates a new MBOX file
+with copies of all the attachments in preservation formats, next to
+the original attachments in the emails from which they originated.
+
+Let's open the workshop with a quick demo of Attachment Converter.
 
 ** Quick Demo
 
-*** Demonstration involving example MBOX
+# TODO: put a link to the Box folder w/ the demo files here
+
+In this demo, we:
+
++ run Attachment Converter on a small example MBOX containing five
+  emails
++ the example MBOX contains attachments in the following formats:
+  + DOC
+  + DOCX
+  + XLSX
+  + JPEG
+  + PDF
++ those attachments are then converted to, respectively:
+  + TXT, PDF-A-1b
+  + TXT, PDF-A-1b
+  + TSV, PDF-A-1b
+  + TIFF
+  + PDF-A-1b
 
 ** Background
+
+
 
 *** The MBOX format
 

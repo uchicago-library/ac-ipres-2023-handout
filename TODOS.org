@@ -1,0 +1,4 @@
+* TODO get org export to re-number sections
+* TODO try "set up the Debian WSL" on actual Windows and fill in details
+* TODO try out the stuff about opening an Explorer window
+* TODO don't tell Mac users to install =git=; the default one works fine
