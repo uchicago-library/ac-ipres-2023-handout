@@ -30,6 +30,7 @@ The project website is located here:
 
 https://dldc.lib.uchicago.edu/open/attachment-converter
 
+
 * How to Participate in This Workshop
 
 There are two ways to participate in this workshop.  If you're feeling
@@ -138,20 +139,62 @@ To set up the Debian WSL:
 + open up the Microsoft Store application using your Start Menu
 + there should be a search box at the top of the window that opens
 + type "Debian" in the search box and hit Enter
-+ a list of search results will come up; double-click on the one
-  called Debian
++ a list of search results will come up; when you find the one
+  called Debian, by The Debian Project, click on "Get"
 + click through the installation buttons, prompts, etc. that come up
 + you will eventually be asked to choose a username and password for
   your Linux subsystem
 + don't forget to write those credentials down and keep them available
   for reference
-+ the installer will ask you to reboot your machine, which completes
-  the process
++ the installer may or may not ask you to reboot your machine,
+  depending on your exact setup
 
-Once you've rebooted and logged back in, you should be able to open a
+Once you've completed the above steps, you should be able to open a
 Debian WSL Terminal by running an application called "Debian" from
-your Start Menu.  It will ask you to log in using the username and
-password you chose during the installation process.
+your Start Menu.  It may or may not ask you to log in; if it does, use
+the username and password you chose during the installation process.
+
+*** Prep WSL for installing
+
+Before installing everything to your WSL, it will be necessary to
+synchronize your machine's installation with the website you're going
+to download software from.  To do that, first run this command:
+
+#+begin_example
+  $ sudo apt update
+#+end_example
+
+You should see a bunch of information get printed to the screen about
+it connecting to some websites and downloading some information.
+
+Next, the WSL needs the latest version of all the software it came
+pre-installed with.  To install all of those software packages in one
+go, run this command:
+
+#+begin_example
+  $ sudo apt upgrade
+#+end_example
+
+(Similar to the previous command, but it says =upgrade= instead of
+=update=.)  As always, you'll see a bunch of information get printed
+to the screen.
+
+*** Create Installation Directory
+
+Next, you need to create the directory the Attachment Converter
+program is going to get installed to, which you can do by running
+these commands:
+
+#+begin_example
+  $ cd ~
+  $ mkdir bin
+#+end_example
+
+You can then navigate back to the source code directory like this:
+
+#+begin_example
+  $ cd ~/src/attachment-converter
+#+end_example
 
 *** Install Version Control Software
 
@@ -188,7 +231,7 @@ format---the email mailbox format that Attachment Converter uses.  To
 install it:
 
 #+begin_example
-  $ sudo apt install libpst
+  $ sudo apt install libpst4
 #+end_example
 
 Once you've reached this point on your Windows machine, you're ready
@@ -224,6 +267,13 @@ run:
 
 #+begin_example
   $ git clone https://github.com/uchicago-library/attachment-converter.git
+#+end_example
+
+That will download all the source code and put it into a directory
+called =attachment-converter=.  To go into that directory, type:
+
+#+begin_example
+  $ cd attachment-converter
 #+end_example
 
 As an aside, if you're on Windows and want to view the contents of a
@@ -267,17 +317,32 @@ will do is:
 + put a number of different configuration files in places where
   Attachment Converter expects them to be, in order to run
 
-To compile Attachment Converter and then install it, run:
+To compile Attachment Converter and then install it, first make sure
+you're in the =attachment-converter= directory, which is where Git
+downloaded and put all of the code:
+
+#+begin_example
+  $ cd ~/src/attachment-converter
+#+end_example
+
+Then from the =attachment-converter= directory, run:
 
 #+begin_example
   $ make home-install
 #+end_example
 
-You'll see a whole bunch of stuff get printed to the screen, which
-should give you an idea of what part of the installation process is
-happening.  It may pause at one point to ask you to type in your
-administrator password.  When the installation process is done, it
-should print a message that looks like this:
+You'll see a whole bunch of stuff get printed to the screen, and it it
+should generally look like it's downloading and installing various
+programs, displaying progress bars, and so forth.  This is your cue to
+go heat up a pot of tea, because it should take about 5-10 minutes.
+The process may pause at one point to ask you to type in your
+administrator password, in which case you should use the one you chose
+when you installed Debian.  You may also be prompted to confirm
+certain steps with a yes/no prompt; if that happens, just choose "yes"
+each time.
+
+When the installation process is done, it should print a message that
+looks like this:
 
 #+begin_example
   Attachment Converter has been installed to ~/bin/attc.
@@ -302,12 +367,14 @@ Then close and reopen your Terminal.
 
 *** Compiling, the Manual Step-By-Step Way
 
-If you get an error while running Make, another thing you can try is
-to do all the steps that our Make configuration does indivdually.
-Following all these steps should work, if there's an unexpected error
-in our Make configuration.  (Though if you do encounter an error, we
-would love to hear about it, so that we can fix it and update these
-instructions!)
+We've put a lot of work into making the semi-automated installation
+process via Make work, but it's complicated and there is always some
+chance it will throw an error. If you get an error while running Make,
+another thing you can try is to do all the steps that our Make
+configuration does indivdually.  Following all these steps should
+work, if there's an unexpected error in our Make configuration.
+(Though if you do encounter an error, we would love to hear about it,
+so that we can fix it and update these instructions!)  If you install Attachment Converter this way, it will probably 
 
 The full instructions for setting Attachment Converter up in the
 non-automated way can be found on our website here:
