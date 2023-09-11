@@ -1,4 +1,4 @@
-% Created 2023-09-06 Wed 16:23
+% Created 2023-09-11 Mon 14:33
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -41,17 +41,18 @@ mailbox to preservation formats.
 Then next few sections of the handout include background on the
 project for your reference, but when the workshop starts, we'll be
 working through the material on this handout starting with section
-\ref{org9483028}.
+\ref{org753a434}.
 
 \section{Project Website}
-\label{sec:org5887b80}
+\label{sec:orgd80eb4c}
 
 The project website is located here:
 
 \url{https://dldc.lib.uchicago.edu/open/attachment-converter}
 
+
 \section{How to Participate in This Workshop}
-\label{sec:org5386b69}
+\label{sec:orgf7902f1}
 
 There are two ways to participate in this workshop.  If you're feeling
 tech-savvy, we would encourage you to install the required software in
@@ -68,12 +69,12 @@ In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
 listen, and ask questions, please feel free to skip to section
-\ref{org9483028}, which is what we'll be working off of during the
+\ref{org753a434}, which is what we'll be working off of during the
 workshop---you won't need to set anything up on your computer in
 advance.
 
-\section{Advance Preparation \label{orge7e3722}}
-\label{sec:orgaab8abb}
+\section{Advance Preparation \label{orga2f38c7}}
+\label{sec:orgdd2a85f}
 
 If you're planning to type along with us on your computer during the
 workshop, then this is the section for you!
@@ -85,13 +86,15 @@ allow you to install software, so if you're attending this conference
 from a work machine, that might be something worth looking into with
 your system administrator.
 
-\subsection{macOS}
-\label{sec:orgef4d5c5}
+If you're on Windows, please skip to section \ref{org09034e1}.  If you're on a
+Mac, you can proceed to section \ref{org404995d}.
+
+\subsection{macOS \label{org404995d}}
+\label{sec:org46d2026}
 
 If you're on a Mac, you'll need to open a Terminal, then install an
 open-source package manager, the \texttt{git} version control system, the \href{https://www.gnu.org/software/make/}{GNU
-Make} build tool, and the \texttt{libpst} package.  We'll go through those
-steps next, but if you're on Windows, please skip to section \ref{org2800df8}.
+Make} build tool, and the \texttt{libpst} package.  
 
 Remember: to follow these instructions, you'll need to have the
 ability to install software on your machine, so if you don't, you may
@@ -99,7 +102,7 @@ want to reach out to your system administrator to see whether they can
 grant you the appropriate privileges for doing so.
 
 \subsubsection{Install Homebrew}
-\label{sec:org771233b}
+\label{sec:orgf329609}
 
 There are various options for open source package managers on macOS,
 but we recommend using \href{https://brew.sh}{Homebrew}.  If you've never used it
@@ -125,7 +128,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 \normalsize
 
 \subsubsection{Install Libpst}
-\label{sec:org81ebd48}
+\label{sec:org4e25041}
 
 The last thing we'll ask you to install is Libpst, the software we
 will use to convert from Outlook \texttt{.pst} to MBOX format during the
@@ -137,10 +140,10 @@ $ brew install libpst
 
 Once you've reached this point on your Mac, you can skip the next
 section---which is our Windows-specific setup instructions---and
-proceed straight to section \ref{org2c8ae9f}.
+proceed straight to section \ref{org7b01fff}.
 
-\subsection{Windows (Debian WSL) \label{org2800df8}}
-\label{sec:orgb5854dc}
+\subsection{Windows (Debian WSL) \label{org09034e1}}
+\label{sec:org8565965}
 
 Attachment Converter is a UNIX application, which means that in order
 to run it on Windows, you'll need to install the \href{https://en.wikipedia.org/wiki/Windows\_Subsystem\_for\_Linux}{Windows Subsystem for
@@ -158,7 +161,7 @@ machine to follow these instructions.  If you don't, check with your
 system administrator about how to get them.
 
 \subsubsection{Set up the Debian WSL}
-\label{sec:org416a306}
+\label{sec:org35b36b5}
 
 To set up the Debian WSL:
 
@@ -166,24 +169,71 @@ To set up the Debian WSL:
 \item open up the Microsoft Store application using your Start Menu
 \item there should be a search box at the top of the window that opens
 \item type ``Debian'' in the search box and hit Enter
-\item a list of search results will come up; double-click on the one
-called Debian
-\item click through the installation buttons, prompts, etc. that come up
-\item you will eventually be asked to choose a username and password for
-your Linux subsystem
-\item don't forget to write those credentials down and keep them available
-for reference
-\item the installer will ask you to reboot your machine, which completes
-the process
 \end{itemize}
 
-Once you've rebooted and logged back in, you should be able to open a
-Debian WSL Terminal by running an application called ``Debian'' from
-your Start Menu.  It will ask you to log in using the username and
+\begin{itemize}
+\item a list of search results will come up; when you find the one
+called Debian with an icon that looks like this, click on ``Get''
+\item after it's finished installing, to open a Debian WSL terminal, run
+``Debian'' form the Start Menu
+\item when the terminal first opens up, you will be asked to choose a
+username and password for your Linux subsystem
+\item when you're typing your password, it won't show anything, but you
+will still be typing it
+\item don't forget to write those credentials down and keep them available
+for reference
+\item that will probably be the end of the install process, but if it asks
+you to reboot, do that
+\end{itemize}
+
+Once you've completed the above steps, if your Debian WSL terminal is
+not already open, you can open it by choosing ``Debian'' from the
+Windows Start Menu.  If it asks you to log in, use the username and
 password you chose during the installation process.
 
+\subsubsection{Prep WSL for installing}
+\label{sec:orgaace96f}
+
+Before installing everything to your WSL, it will be necessary to
+synchronize your machine's installation with the website you're going
+to download software from.  To do that, first run this command:
+
+\begin{verbatim}
+$ sudo apt update
+\end{verbatim}
+
+You should see a bunch of information get printed to the screen about
+it connecting to some websites and downloading some information.  It
+should also ask you to type the password you chose during the Debian
+WSL installation process, since this is the first time you're running
+an install command.
+
+Next, the WSL needs the latest version of all the software it came
+pre-installed with.  To install all of those software packages in one
+go, run this command:
+
+\begin{verbatim}
+$ sudo apt upgrade
+\end{verbatim}
+
+(Similar to the previous command, but it says \texttt{upgrade} instead of
+\texttt{update}.)  As always, you'll see a bunch of information get printed
+to the screen.  If it prompts to say yes, say yes.
+
+\subsubsection{Create Installation Directory}
+\label{sec:org3cd909d}
+
+Next, you need to create the directory the Attachment Converter
+program is going to get installed to, which you can do by running
+these commands:
+
+\begin{verbatim}
+$ cd ~
+$ mkdir bin
+\end{verbatim}
+
 \subsubsection{Install Version Control Software}
-\label{sec:orgbcfef95}
+\label{sec:orgb4d88c1}
 
 Now that your UNIX environment is set up, the next step is to install
 version control software, which in this case is Git.  To do that, run
@@ -193,16 +243,17 @@ this command:
 $ sudo apt install git
 \end{verbatim}
 
-Note that the first time you run a command with the prefix \texttt{sudo}, you
-will be prompted for a password.  If that happens, use the password
-that you chose for your UNIX account when you set up the Debian WSL.
-
 This is the utility we will use to get the latest version of the
 source code for Attachment Converter, later in these setup
 instructions.
 
+If it asks you for your password, use the one that you chose when
+installing Debian WSL.  If it asks you to confirm you want to install
+Git, say yes.  (You'll be saying yes to everything that comes up in
+these instructions)
+
 \subsubsection{Install GNU Make}
-\label{sec:org9a5f9df}
+\label{sec:org91b56e3}
 
 The software we're going to use to compile Attachment Converter is
 called Make.  To install it, run this command:
@@ -212,7 +263,7 @@ $ sudo apt install make
 \end{verbatim}
 
 \subsubsection{Install Libpst}
-\label{sec:org69f227c}
+\label{sec:orga9d1663}
 
 Finally, we're going to ask you to install Libpst, which is a freely
 available utility for converting Outlook \texttt{.pst} files to MBOX
@@ -220,15 +271,15 @@ format---the email mailbox format that Attachment Converter uses.  To
 install it:
 
 \begin{verbatim}
-$ sudo apt install libpst
+$ sudo apt install libpst4
 \end{verbatim}
 
 Once you've reached this point on your Windows machine, you're ready
 to go to the next section, in which we show you how to compile
 Attachment Converter into an executable that you can run.
 
-\subsection{Compile Attachment Converter \label{org2c8ae9f}}
-\label{sec:orgf4a2f02}
+\subsection{Compile Attachment Converter \label{org7b01fff}}
+\label{sec:org1d1b548}
 
 Now that you're set up with the basic software you need, whether
 you're on Windows or a Mac, the next step is to download the source
@@ -237,15 +288,13 @@ run, and put the executable in a location where your Terminal can see
 it.
 
 \subsubsection{Get The Code}
-\label{sec:org188fe01}
+\label{sec:orgfc70e1a}
 
 The first thing we need to do is download the source code for
 Attachment Converter.  The simplest way to do that is by using Git.
 
-First, go to the directory on your computer where you would like the
-source code to get downloaded to.  If you aren't sure where that
-should be, you can make a new directory to keep your source code in by
-running these commands:
+First, make a new directory to keep your source code in by running
+these commands:
 
 \begin{verbatim}
 $ cd ~
@@ -254,15 +303,23 @@ $ cd src
 \end{verbatim}
 
 To then download the source code for Attachment Converter using Git,
-run:
+run this command (you can copy/paste it if it's too long to type):
 
 \begin{verbatim}
 $ git clone https://github.com/uchicago-library/attachment-converter.git
 \end{verbatim}
 
+That will download all the source code and put it into a directory
+called \texttt{attachment-converter}.  To go into that directory, type:
+
+\begin{verbatim}
+$ cd attachment-converter
+\end{verbatim}
+
 As an aside, if you're on Windows and want to view the contents of a
 directory you're in using Windows explorer, you can run this command
-to open up an Explorer window in the current directory:
+to open up an Explorer window in the current directory (note the dot
+after the \texttt{explorer.exe} command):
 
 \begin{verbatim}
 $ explorer.exe .
@@ -279,7 +336,11 @@ Now that you have the source code for Attachment Converter, the next
 step is to compile it into an executable program.
 
 \subsubsection{Compiling, the Semi-Automated Way}
-\label{sec:org54cca75}
+\label{sec:org08c0d89}
+
+\begin{enumerate}
+\item Overview
+\label{sec:orgc149620}
 
 The utility we're going to use to compile Attachment Converter is
 called Make.  If you're on Windows, we told you to install that in the
@@ -304,17 +365,37 @@ compile Attachment Converter
 Attachment Converter expects them to be, in order to run
 \end{itemize}
 
-To compile Attachment Converter and then install it, run:
+\item Instructions
+\label{sec:orge19aaf3}
+
+To compile Attachment Converter and then install it, first make sure
+you're in the \texttt{attachment-converter} directory, which is where Git
+downloaded and put all of the code:
+
+\begin{verbatim}
+$ cd ~/src/attachment-converter
+\end{verbatim}
+
+Then from the \texttt{attachment-converter} directory, run:
 
 \begin{verbatim}
 $ make home-install
 \end{verbatim}
 
-You'll see a whole bunch of stuff get printed to the screen, which
-should give you an idea of what part of the installation process is
-happening.  It may pause at one point to ask you to type in your
-administrator password.  When the installation process is done, it
-should print a message that looks like this:
+You'll see a whole bunch of stuff get printed to the screen, and it it
+should generally look like it's downloading and installing various
+programs, displaying progress bars, and so forth.  This is your cue to
+go heat up a pot of tea, because it should take about 5-10 minutes.
+The process may pause at one point to ask you to type in your
+administrator password, in which case you should use the one you chose
+when you installed Debian.  You may also be prompted to confirm
+certain steps with a yes/no prompt; if that happens, just choose ``yes''
+each time.  There will also be one or two times when it won't display
+anything on the screen, even though it's still working.  You'll know
+it's done when you see the final confirmation message.
+
+When the installation process is done, it should print a message that
+looks like this:
 
 \begin{verbatim}
 Attachment Converter has been installed to ~/bin/attc.
@@ -336,16 +417,19 @@ $ echo "export PATH=~/bin:$PATH" >> ~/.zshrc
 \end{verbatim}
 
 Then close and reopen your Terminal.
+\end{enumerate}
 
 \subsubsection{Compiling, the Manual Step-By-Step Way}
-\label{sec:org15417cf}
+\label{sec:orgeffd146}
 
-If you get an error while running Make, another thing you can try is
-to do all the steps that our Make configuration does indivdually.
-Following all these steps should work, if there's an unexpected error
-in our Make configuration.  (Though if you do encounter an error, we
-would love to hear about it, so that we can fix it and update these
-instructions!)
+We've put a lot of work into making the semi-automated installation
+process via Make work, but it's complicated and there is always some
+chance it will throw an error. If you get an error while running Make,
+another thing you can try is to do all the steps that our Make
+configuration does indivdually.  Following all these steps should
+work, if there's an unexpected error in our Make configuration.
+(Though if you do encounter an error, we would love to hear about it,
+so that we can fix it and update these instructions!)  If you install Attachment Converter this way, it will probably 
 
 The full instructions for setting Attachment Converter up in the
 non-automated way can be found on our website here:
@@ -355,8 +439,8 @@ non-automated way can be found on our website here:
 That concludes our setup instructions!  The rest of this handout
 reflects what we will cover during the workshop proper.
 
-\section{During The Workshop \label{org9483028}}
-\label{sec:orgd891b46}
+\section{During The Workshop \label{org753a434}}
+\label{sec:org14190c6}
 
 Attachment Converter is a command-line utility that batch-converts all
 attachments in an email mailbox to preservation formats.  You give it
@@ -367,7 +451,7 @@ the original attachments in the emails from which they originated.
 Let's open the workshop with a quick demo of Attachment Converter.
 
 \subsection{Quick Demo}
-\label{sec:org8bdb0f2}
+\label{sec:org9154436}
 
 In this demo, we:
 
@@ -393,62 +477,64 @@ emails
 \end{itemize}
 
 \subsection{Background}
-\label{sec:orgaffb7aa}
+\label{sec:org58d0a81}
+
+
 
 \subsubsection{The MBOX format}
-\label{sec:orge0b5065}
+\label{sec:orged2aee8}
 
 \subsubsection{The Anatomy of an Email}
-\label{sec:orge536b2c}
+\label{sec:orgf0f4c4e}
 
 \begin{enumerate}
 \item MIME types
-\label{sec:org51b32c3}
+\label{sec:orgaf67918}
 
 \item Base64 data
-\label{sec:org7517990}
+\label{sec:orgc5336e9}
 \end{enumerate}
 
 \subsubsection{How To Convert an Outlook \texttt{.pst} to \texttt{.mbox} Format}
-\label{sec:orgbe23090}
+\label{sec:orgff84131}
 
 \subsection{More Detailed Demo}
-\label{sec:org020a2bc}
+\label{sec:org880981f}
 
 \subsubsection{Installing Attachment Converter}
-\label{sec:org01e2528}
+\label{sec:orgd5844ef}
 
 \subsubsection{A Simple Example of Running Attachment Converter}
-\label{sec:org54c1b21}
+\label{sec:org97cb92d}
 
 \subsubsection{Looking At The Output}
-\label{sec:orga495af6}
+\label{sec:org8d875dd}
 
 \begin{enumerate}
 \item The Headers that \texttt{attc} inserts
-\label{sec:orgea0037c}
+\label{sec:org17a0327}
 
 \item The Data that \texttt{attc} inserts
-\label{sec:orgc2344b1}
+\label{sec:orgf52fc4f}
 \end{enumerate}
 
 \subsection{Advanced Configuration}
-\label{sec:org31475b9}
+\label{sec:orgac0acaa}
 
 \subsubsection{Attachment Converter's Configuration File}
-\label{sec:org00190c3}
+\label{sec:org51dfcfc}
 
 \subsubsection{A Glance at our Shell Scripts}
-\label{sec:org22ec409}
+\label{sec:org6a09af2}
 
 \begin{enumerate}
 \item where they go
-\label{sec:orgbdd8f69}
+\label{sec:org7a86fad}
 
 \item rough overview of what they do
-\label{sec:org50c0389}
+\label{sec:org127ffb1}
 \end{enumerate}
 
 \subsubsection{Show and Tell: Here is How To Add a new Utility to Attachment Converter}
-\label{sec:org98e152e}
+\label{sec:orgcdf8a6e}
 \end{document}

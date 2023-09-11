@@ -64,12 +64,14 @@ allow you to install software, so if you're attending this conference
 from a work machine, that might be something worth looking into with
 your system administrator.
 
-** macOS
+If you're on Windows, please skip to section [[windows]].  If you're on a
+Mac, you can proceed to section [[mac]].
+
+** macOS <<mac>>
 
 If you're on a Mac, you'll need to open a Terminal, then install an
 open-source package manager, the =git= version control system, the [[https://www.gnu.org/software/make/][GNU
-Make]] build tool, and the =libpst= package.  We'll go through those
-steps next, but if you're on Windows, please skip to section [[windows]].
+Make]] build tool, and the =libpst= package.  
 
 Remember: to follow these instructions, you'll need to have the
 ability to install software on your machine, so if you don't, you may
@@ -139,20 +141,24 @@ To set up the Debian WSL:
 + open up the Microsoft Store application using your Start Menu
 + there should be a search box at the top of the window that opens
 + type "Debian" in the search box and hit Enter
+# TODO: put the icon there
 + a list of search results will come up; when you find the one
-  called Debian, by The Debian Project, click on "Get"
-+ click through the installation buttons, prompts, etc. that come up
-+ you will eventually be asked to choose a username and password for
-  your Linux subsystem
+  called Debian with an icon that looks like this, click on "Get"
++ after it's finished installing, to open a Debian WSL terminal, run
+  "Debian" form the Start Menu
++ when the terminal first opens up, you will be asked to choose a
+  username and password for your Linux subsystem
++ when you're typing your password, it won't show anything, but you
+  will still be typing it
 + don't forget to write those credentials down and keep them available
   for reference
-+ the installer may or may not ask you to reboot your machine,
-  depending on your exact setup
++ that will probably be the end of the install process, but if it asks
+  you to reboot, do that
 
-Once you've completed the above steps, you should be able to open a
-Debian WSL Terminal by running an application called "Debian" from
-your Start Menu.  It may or may not ask you to log in; if it does, use
-the username and password you chose during the installation process.
+Once you've completed the above steps, if your Debian WSL terminal is
+not already open, you can open it by choosing "Debian" from the
+Windows Start Menu.  If it asks you to log in, use the username and
+password you chose during the installation process.
 
 *** Prep WSL for installing
 
@@ -165,7 +171,10 @@ to download software from.  To do that, first run this command:
 #+end_example
 
 You should see a bunch of information get printed to the screen about
-it connecting to some websites and downloading some information.
+it connecting to some websites and downloading some information.  It
+should also ask you to type the password you chose during the Debian
+WSL installation process, since this is the first time you're running
+an install command.
 
 Next, the WSL needs the latest version of all the software it came
 pre-installed with.  To install all of those software packages in one
@@ -177,7 +186,7 @@ go, run this command:
 
 (Similar to the previous command, but it says =upgrade= instead of
 =update=.)  As always, you'll see a bunch of information get printed
-to the screen.
+to the screen.  If it prompts to say yes, say yes.
 
 *** Create Installation Directory
 
@@ -190,12 +199,6 @@ these commands:
   $ mkdir bin
 #+end_example
 
-You can then navigate back to the source code directory like this:
-
-#+begin_example
-  $ cd ~/src/attachment-converter
-#+end_example
-
 *** Install Version Control Software
 
 Now that your UNIX environment is set up, the next step is to install
@@ -206,13 +209,14 @@ this command:
   $ sudo apt install git
 #+end_example
 
-Note that the first time you run a command with the prefix =sudo=, you
-will be prompted for a password.  If that happens, use the password
-that you chose for your UNIX account when you set up the Debian WSL.
-
 This is the utility we will use to get the latest version of the
 source code for Attachment Converter, later in these setup
 instructions.
+
+If it asks you for your password, use the one that you chose when
+installing Debian WSL.  If it asks you to confirm you want to install
+Git, say yes.  (You'll be saying yes to everything that comes up in
+these instructions)
 
 *** Install GNU Make
 
@@ -251,10 +255,8 @@ it.
 The first thing we need to do is download the source code for
 Attachment Converter.  The simplest way to do that is by using Git.
 
-First, go to the directory on your computer where you would like the
-source code to get downloaded to.  If you aren't sure where that
-should be, you can make a new directory to keep your source code in by
-running these commands:
+First, make a new directory to keep your source code in by running
+these commands:
 
 #+begin_example
   $ cd ~
@@ -263,7 +265,7 @@ running these commands:
 #+end_example
 
 To then download the source code for Attachment Converter using Git,
-run:
+run this command (you can copy/paste it if it's too long to type):
 
 #+begin_example
   $ git clone https://github.com/uchicago-library/attachment-converter.git
@@ -278,7 +280,8 @@ called =attachment-converter=.  To go into that directory, type:
 
 As an aside, if you're on Windows and want to view the contents of a
 directory you're in using Windows explorer, you can run this command
-to open up an Explorer window in the current directory:
+to open up an Explorer window in the current directory (note the dot
+after the =explorer.exe= command):
 
 #+begin_example
   $ explorer.exe .
@@ -295,6 +298,8 @@ Now that you have the source code for Attachment Converter, the next
 step is to compile it into an executable program.
 
 *** Compiling, the Semi-Automated Way
+
+**** Overview
 
 The utility we're going to use to compile Attachment Converter is
 called Make.  If you're on Windows, we told you to install that in the
@@ -316,6 +321,8 @@ will do is:
   compile Attachment Converter
 + put a number of different configuration files in places where
   Attachment Converter expects them to be, in order to run
+
+**** Instructions
 
 To compile Attachment Converter and then install it, first make sure
 you're in the =attachment-converter= directory, which is where Git
@@ -339,7 +346,9 @@ The process may pause at one point to ask you to type in your
 administrator password, in which case you should use the one you chose
 when you installed Debian.  You may also be prompted to confirm
 certain steps with a yes/no prompt; if that happens, just choose "yes"
-each time.
+each time.  There will also be one or two times when it won't display
+anything on the screen, even though it's still working.  You'll know
+it's done when you see the final confirmation message.
 
 When the installation process is done, it should print a message that
 looks like this:
