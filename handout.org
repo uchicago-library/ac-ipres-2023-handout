@@ -24,7 +24,7 @@ mailbox to preservation formats.
 
 Then next few sections of the handout include background on the
 project for your reference, but when the workshop starts, we'll be
-working through the material on this handout starting with [[workshop][section]]
+working through the material on this handout starting with x[[workshop][section]]
 [[workshop]].
 
 * Project Website 
@@ -242,7 +242,7 @@ install it:
 #+end_example
 
 Once you've reached this point on your Windows machine, you're ready
-to go to the next section, in which we show you how to compile
+to go to [[compile][the next section]], in which we show you how to compile
 Attachment Converter into an executable that you can run.
 
 ** Compile Attachment Converter <<compile>>
@@ -275,7 +275,8 @@ run this command (you can copy/paste it if it's too long to type):
 #+end_example
 
 That will download all the source code and put it into a directory
-called =attachment-converter=.  To go into that directory, type:
+called =attachment-converter= under =src=.  To go into that directory,
+type:
 
 #+begin_example
   $ cd attachment-converter
@@ -302,18 +303,16 @@ step is to compile it into an executable program.
 
 *** Compiling, the Semi-Automated Way
 
-**** Overview
-
-The utility we're going to use to compile Attachment Converter is
-called Make.  If you're on Windows, we told you to install that in the
-previous section.  If you're on a Mac, then you already have Make
-installed on your computer.
+Let's start with an overview.  The utility we're going to use to
+compile Attachment Converter is called Make.  If you're on Windows, we
+told you to install that in the previous section.  If you're on a Mac,
+then you already have Make installed on your computer.
 
 Attachment Converter has a lot of moving parts, which means that
 installing it involves installing some more standard utilities and
-copying a bunch of different files to a bunch of different places in
-your home directory.  When you run Make, the full list of things it
-will do is:
+copying a lot of different files to a lot of different places in your
+home directory.  When you run Make, the full list of things it will do
+is:
 
 + install all the free software that Attachment Converter uses to
   convert file attachments
@@ -325,11 +324,9 @@ will do is:
 + put a number of different configuration files in places where
   Attachment Converter expects them to be, in order to run
 
-**** Instructions
-
 To compile Attachment Converter and then install it, first make sure
-you're in the =attachment-converter= directory, which is where Git
-downloaded and put all of the code:
+you're in the @@latex:\\@@ =attachment-converter= directory, which is
+where Git downloaded and put all of the code:
 
 #+begin_example
   $ cd ~/src/attachment-converter
@@ -341,11 +338,11 @@ Then from the =attachment-converter= directory, run:
   $ make home-install
 #+end_example
 
-You'll see a whole bunch of stuff get printed to the screen, and it it
-should generally look like it's downloading and installing various
-programs, displaying progress bars, and so forth.  This is your cue to
-go heat up a pot of tea, because it should take about 5-10 minutes.
-The process may pause at one point to ask you to type in your
+You'll see many messages get printed to the screen, and it should
+generally look like it's downloading and installing various programs,
+displaying progress bars, and so forth.  This is your cue to go heat
+up a pot of tea, because it should take about 5-10 minutes.  The
+process may pause at one point to ask you to type in your
 administrator password, in which case you should use the one you chose
 when you installed Debian.  You may also be prompted to confirm
 certain steps with a yes/no prompt; if that happens, just choose "yes"
@@ -386,7 +383,8 @@ another thing you can try is to do all the steps that our Make
 configuration does indivdually.  Following all these steps should
 work, if there's an unexpected error in our Make configuration.
 (Though if you do encounter an error, we would love to hear about it,
-so that we can fix it and update these instructions!)  If you install Attachment Converter this way, it will probably 
+so that we can fix it and update these instructions!)  Installing
+Attachment Converter in that way will probably take you a bit longer.
 
 The full instructions for setting Attachment Converter up in the
 non-automated way can be found on our website here:
@@ -397,6 +395,8 @@ That concludes our setup instructions!  The rest of this handout
 reflects what we will cover during the workshop proper.
 
 * During The Workshop <<workshop>>
+
+Welcome to our workshop!  We are excited to be here.
 
 Attachment Converter is a command-line utility that batch-converts all
 attachments in an email mailbox to preservation formats.  You give it
@@ -429,7 +429,21 @@ In this demo, we:
 
 ** Background
 
+You're most likely used to using email clients, whether they're
+web-based, like GMail or Hotmail, or run as apps on your computer,
+like Thunderbird, Apple Mail, or Outlook.  But what does an email
+actually look like, close up?
 
+Interestingly, the email format is not only very old, totally
+ubiquitous, and mostly standardized, but it is actually
+human-readable!  At the level at which mail servers send and receive
+mail, every email is in fact plaintext---that is to say, standard
+ASCII characters with no fonts, styling, sizing, or page layout
+information in them of the kind you see in word processors.  With most
+other software, if we wanted to look at the data it was sending
+around, it would be tricky, because it would be raw binary data.  But
+with email, the raw data are just sequences of characters you could
+read yourself, if you wanted to.
 
 *** The MBOX format
 
