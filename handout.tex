@@ -1,4 +1,4 @@
-% Created 2023-09-11 Mon 14:33
+% Created 2023-09-11 Mon 14:41
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -13,6 +13,7 @@
 \usepackage{capt-of}
 \usepackage{hyperref}
 \usepackage[margin=1.1in]{geometry}
+\usepackage[margin=1.1in]{geometry}
 \usepackage[hang]{footmisc}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1.8ex plus 0.25ex minus 0.25ex}
@@ -20,6 +21,8 @@
 \usepackage{setspace}
 \usepackage{hyperref}
 \setstretch{1.1}
+\usepackage{xcolor}
+\hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
 \author{Nishchay Karle, Obi Obetta, Matt Teichman\thanks{teichman@uchicago.edu}}
 \date{\today}
 \title{Attachment Converter Workshop, iPres 2023}
@@ -40,11 +43,11 @@ mailbox to preservation formats.
 
 Then next few sections of the handout include background on the
 project for your reference, but when the workshop starts, we'll be
-working through the material on this handout starting with section
-\ref{org753a434}.
+working through the material on this handout starting with \hyperref[org5f12998]{section}
+\ref{org5f12998}.
 
 \section{Project Website}
-\label{sec:orgd80eb4c}
+\label{sec:orgf675e48}
 
 The project website is located here:
 
@@ -52,7 +55,7 @@ The project website is located here:
 
 
 \section{How to Participate in This Workshop}
-\label{sec:orgf7902f1}
+\label{sec:org99f79b3}
 
 There are two ways to participate in this workshop.  If you're feeling
 tech-savvy, we would encourage you to install the required software in
@@ -68,13 +71,13 @@ working at the command prompt.
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
-listen, and ask questions, please feel free to skip to section
-\ref{org753a434}, which is what we'll be working off of during the
+listen, and ask questions, please feel free to skip to \hyperref[org5f12998]{section}
+\ref{org5f12998}, which is what we'll be working off of during the
 workshop---you won't need to set anything up on your computer in
 advance.
 
-\section{Advance Preparation \label{orga2f38c7}}
-\label{sec:orgdd2a85f}
+\section{Advance Preparation \label{orga613116}}
+\label{sec:org753d30c}
 
 If you're planning to type along with us on your computer during the
 workshop, then this is the section for you!
@@ -86,11 +89,11 @@ allow you to install software, so if you're attending this conference
 from a work machine, that might be something worth looking into with
 your system administrator.
 
-If you're on Windows, please skip to section \ref{org09034e1}.  If you're on a
-Mac, you can proceed to section \ref{org404995d}.
+If you're on Windows, please skip to \hyperref[org0012ba7]{section} \ref{org0012ba7}.  If you're on a
+Mac, you can proceed to \hyperref[org7c8d9d3]{section} \ref{org7c8d9d3}.
 
-\subsection{macOS \label{org404995d}}
-\label{sec:org46d2026}
+\subsection{macOS \label{org7c8d9d3}}
+\label{sec:orgca3eafd}
 
 If you're on a Mac, you'll need to open a Terminal, then install an
 open-source package manager, the \texttt{git} version control system, the \href{https://www.gnu.org/software/make/}{GNU
@@ -102,7 +105,7 @@ want to reach out to your system administrator to see whether they can
 grant you the appropriate privileges for doing so.
 
 \subsubsection{Install Homebrew}
-\label{sec:orgf329609}
+\label{sec:orge75d79d}
 
 There are various options for open source package managers on macOS,
 but we recommend using \href{https://brew.sh}{Homebrew}.  If you've never used it
@@ -128,7 +131,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 \normalsize
 
 \subsubsection{Install Libpst}
-\label{sec:org4e25041}
+\label{sec:org8e777ab}
 
 The last thing we'll ask you to install is Libpst, the software we
 will use to convert from Outlook \texttt{.pst} to MBOX format during the
@@ -140,10 +143,10 @@ $ brew install libpst
 
 Once you've reached this point on your Mac, you can skip the next
 section---which is our Windows-specific setup instructions---and
-proceed straight to section \ref{org7b01fff}.
+proceed straight to section \ref{org1744471}.
 
-\subsection{Windows (Debian WSL) \label{org09034e1}}
-\label{sec:org8565965}
+\subsection{Windows (Debian WSL) \label{org0012ba7}}
+\label{sec:orgf7a3ed6}
 
 Attachment Converter is a UNIX application, which means that in order
 to run it on Windows, you'll need to install the \href{https://en.wikipedia.org/wiki/Windows\_Subsystem\_for\_Linux}{Windows Subsystem for
@@ -161,7 +164,7 @@ machine to follow these instructions.  If you don't, check with your
 system administrator about how to get them.
 
 \subsubsection{Set up the Debian WSL}
-\label{sec:org35b36b5}
+\label{sec:orgecc1bc3}
 
 To set up the Debian WSL:
 
@@ -192,7 +195,7 @@ Windows Start Menu.  If it asks you to log in, use the username and
 password you chose during the installation process.
 
 \subsubsection{Prep WSL for installing}
-\label{sec:orgaace96f}
+\label{sec:org6d67cbe}
 
 Before installing everything to your WSL, it will be necessary to
 synchronize your machine's installation with the website you're going
@@ -221,7 +224,7 @@ $ sudo apt upgrade
 to the screen.  If it prompts to say yes, say yes.
 
 \subsubsection{Create Installation Directory}
-\label{sec:org3cd909d}
+\label{sec:orgd7a950c}
 
 Next, you need to create the directory the Attachment Converter
 program is going to get installed to, which you can do by running
@@ -233,7 +236,7 @@ $ mkdir bin
 \end{verbatim}
 
 \subsubsection{Install Version Control Software}
-\label{sec:orgb4d88c1}
+\label{sec:org918e460}
 
 Now that your UNIX environment is set up, the next step is to install
 version control software, which in this case is Git.  To do that, run
@@ -253,7 +256,7 @@ Git, say yes.  (You'll be saying yes to everything that comes up in
 these instructions)
 
 \subsubsection{Install GNU Make}
-\label{sec:org91b56e3}
+\label{sec:org5f446a6}
 
 The software we're going to use to compile Attachment Converter is
 called Make.  To install it, run this command:
@@ -263,7 +266,7 @@ $ sudo apt install make
 \end{verbatim}
 
 \subsubsection{Install Libpst}
-\label{sec:orga9d1663}
+\label{sec:orga686d58}
 
 Finally, we're going to ask you to install Libpst, which is a freely
 available utility for converting Outlook \texttt{.pst} files to MBOX
@@ -278,8 +281,8 @@ Once you've reached this point on your Windows machine, you're ready
 to go to the next section, in which we show you how to compile
 Attachment Converter into an executable that you can run.
 
-\subsection{Compile Attachment Converter \label{org7b01fff}}
-\label{sec:org1d1b548}
+\subsection{Compile Attachment Converter \label{org1744471}}
+\label{sec:orgb9bf28b}
 
 Now that you're set up with the basic software you need, whether
 you're on Windows or a Mac, the next step is to download the source
@@ -288,7 +291,7 @@ run, and put the executable in a location where your Terminal can see
 it.
 
 \subsubsection{Get The Code}
-\label{sec:orgfc70e1a}
+\label{sec:org9207602}
 
 The first thing we need to do is download the source code for
 Attachment Converter.  The simplest way to do that is by using Git.
@@ -336,11 +339,11 @@ Now that you have the source code for Attachment Converter, the next
 step is to compile it into an executable program.
 
 \subsubsection{Compiling, the Semi-Automated Way}
-\label{sec:org08c0d89}
+\label{sec:org2ec3ad6}
 
 \begin{enumerate}
 \item Overview
-\label{sec:orgc149620}
+\label{sec:org1627a39}
 
 The utility we're going to use to compile Attachment Converter is
 called Make.  If you're on Windows, we told you to install that in the
@@ -366,7 +369,7 @@ Attachment Converter expects them to be, in order to run
 \end{itemize}
 
 \item Instructions
-\label{sec:orge19aaf3}
+\label{sec:orgda103ee}
 
 To compile Attachment Converter and then install it, first make sure
 you're in the \texttt{attachment-converter} directory, which is where Git
@@ -420,7 +423,7 @@ Then close and reopen your Terminal.
 \end{enumerate}
 
 \subsubsection{Compiling, the Manual Step-By-Step Way}
-\label{sec:orgeffd146}
+\label{sec:org2c58bea}
 
 We've put a lot of work into making the semi-automated installation
 process via Make work, but it's complicated and there is always some
@@ -439,8 +442,8 @@ non-automated way can be found on our website here:
 That concludes our setup instructions!  The rest of this handout
 reflects what we will cover during the workshop proper.
 
-\section{During The Workshop \label{org753a434}}
-\label{sec:org14190c6}
+\section{During The Workshop \label{org5f12998}}
+\label{sec:org317209c}
 
 Attachment Converter is a command-line utility that batch-converts all
 attachments in an email mailbox to preservation formats.  You give it
@@ -451,7 +454,7 @@ the original attachments in the emails from which they originated.
 Let's open the workshop with a quick demo of Attachment Converter.
 
 \subsection{Quick Demo}
-\label{sec:org9154436}
+\label{sec:orgb50c081}
 
 In this demo, we:
 
@@ -477,64 +480,64 @@ emails
 \end{itemize}
 
 \subsection{Background}
-\label{sec:org58d0a81}
+\label{sec:org8b7a730}
 
 
 
 \subsubsection{The MBOX format}
-\label{sec:orged2aee8}
+\label{sec:org5c9d1e9}
 
 \subsubsection{The Anatomy of an Email}
-\label{sec:orgf0f4c4e}
+\label{sec:org706d6be}
 
 \begin{enumerate}
 \item MIME types
-\label{sec:orgaf67918}
+\label{sec:orgbe2e8f9}
 
 \item Base64 data
-\label{sec:orgc5336e9}
+\label{sec:orgabc32a7}
 \end{enumerate}
 
 \subsubsection{How To Convert an Outlook \texttt{.pst} to \texttt{.mbox} Format}
-\label{sec:orgff84131}
+\label{sec:org4a0512f}
 
 \subsection{More Detailed Demo}
-\label{sec:org880981f}
+\label{sec:org6830f8b}
 
 \subsubsection{Installing Attachment Converter}
-\label{sec:orgd5844ef}
+\label{sec:org9e7e052}
 
 \subsubsection{A Simple Example of Running Attachment Converter}
-\label{sec:org97cb92d}
+\label{sec:org13972fa}
 
 \subsubsection{Looking At The Output}
-\label{sec:org8d875dd}
+\label{sec:org9b30747}
 
 \begin{enumerate}
 \item The Headers that \texttt{attc} inserts
-\label{sec:org17a0327}
+\label{sec:orge93c186}
 
 \item The Data that \texttt{attc} inserts
-\label{sec:orgf52fc4f}
+\label{sec:orgb2e95ee}
 \end{enumerate}
 
 \subsection{Advanced Configuration}
-\label{sec:orgac0acaa}
+\label{sec:orgc95d076}
 
 \subsubsection{Attachment Converter's Configuration File}
-\label{sec:org51dfcfc}
+\label{sec:org8b0ed66}
 
 \subsubsection{A Glance at our Shell Scripts}
-\label{sec:org6a09af2}
+\label{sec:orgc703db6}
 
 \begin{enumerate}
 \item where they go
-\label{sec:org7a86fad}
+\label{sec:org3054ab4}
 
 \item rough overview of what they do
-\label{sec:org127ffb1}
+\label{sec:orgdfc4105}
 \end{enumerate}
 
 \subsubsection{Show and Tell: Here is How To Add a new Utility to Attachment Converter}
-\label{sec:orgcdf8a6e}
+\label{sec:org57f6123}
 \end{document}
