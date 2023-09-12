@@ -14,8 +14,10 @@
 #+LATEX_HEADER: \usepackage{setspace}
 #+LATEX_HEADER: \usepackage{hyperref}
 #+LATEX_HEADER: \setstretch{1.1}
-#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage[dvipsnames]{xcolor}
 #+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
+#+LATEX_HEADER: \usepackage{mathpazo}
+
 
 Welcome to the Attachment Converter Workshop at iPres 2023!  In this
 session, we'll walk you through our new open source application,
@@ -24,7 +26,7 @@ mailbox to preservation formats.
 
 Then next few sections of the handout include background on the
 project for your reference, but when the workshop starts, we'll be
-working through the material on this handout starting with x[[workshop][section]]
+working through the material on this handout starting with [[workshop][section]]
 [[workshop]].
 
 * Project Website 
@@ -73,8 +75,9 @@ Mac, you can proceed to [[mac][section]] [[mac]].
 ** macOS <<mac>>
 
 If you're on a Mac, you'll need to open a Terminal, then install an
-open-source package manager, the =git= version control system, the [[https://www.gnu.org/software/make/][GNU
-Make]] build tool, and the =libpst= package.  
+open-source package manager, the =git= version control system, the
+[[https://www.gnu.org/software/make/][GNU Make]] build tool, and the
+=libpst= package.
 
 Remember: to follow these instructions, you'll need to have the
 ability to install software on your machine, so if you don't, you may
@@ -445,9 +448,126 @@ around, it would be tricky, because it would be raw binary data.  But
 with email, the raw data are just sequences of characters you could
 read yourself, if you wanted to.
 
+The format in which an individual email is pretty standardized, but
+there are many different data formats for putting a large collection
+of individual emails together into a /mailbox/, such as *Inbox*, *Sent
+Mail*, or *Trash*.  Attachment Converter uses one of the oldest and
+most universal data formats for mailboxes, called [[https://www.loc.gov/preservation/digital/formats/fdd/fdd000383.shtml][MBOX]].  
+
 *** The MBOX format
 
+MBOX is an old, standard, and human-readable format.  In other words,
+rather than packing large collections of individual emails into a raw
+binary data format, the mailbox containing emails is itself also
+plaintext.  So in the same way that you can open the full data in an
+email up in any text editor, you can open an MBOX up in a text editor
+and just look at the information that's in there.
+
+The MBOX format is very simple.  One thing that makes it simple
+compared to other formats is that it saves each mailbox in a single
+file.  That makes it quite easy to browse through large sets of
+mailboxes, move them around, back them up, and so forth.  Another
+thing that makes it simple is that it's nothing other than a format
+for putting emails into a sequence.  So an MBOX is essentially a big
+list: one email followed by another until you're through all of them.
+This is as opposed to e.g. trying to group/organize the emails in some
+way, or trying to include information about what emails are contained
+in it.  (Later on in this workshop, we'll demonstrate Attachment
+Converter's "report" feature, which you can run on an MBOX when you're
+browsing around to get some basic information about it.)
+
+*** The Delimiter: =From= 
+
+Any data arranged into the form of a list on a computer needs some way
+of specifying where each item in the list starts and where it
+finishes.  Usually, the way we accomplish that is by using a
+/delimiter/.  For example, if I were to write down the list "=1,2,3="
+as a string of characters, the delimiter in that example would be a
+comma and the elements of the list would be =1=, =2=, and =3=,
+respectively.
+
+In the case of an MBOX, each email is separated by a special line of
+text that is not considered to be part of the email---only part of the
+mailbox.  The rules for constructing a From line go like this:
+
+- put =From= at the beginning of the line
+- add one space
+- insert any text you want (i.e. this part is a free text field)
+- end the line
+
+So the following are all perfectly good From lines:
+
+
+- =From Matt Teichman=
+- =From MAILER-DAEMON Fri Jul  8 12:08:34 2011=
+- =From vd7g8o73 2vfy32v7y3298v7b3r8qv3278r=
+- =From= (with a space before the line break)
+
+
+One thing that's potentially confusing about From lines is that emails
+typically come with a header telling you who the sender was.  That
+header usually looks like this:
+
+#+begin_example
+  From: Bugs Bunny <bugsbunny@uchicago.edu>
+#+end_example
+
+A header like that is part of an individual email---not the delimiter
+in a mailbox---and a quick way to tell which of these two things
+you're looking at is to look for a colon.  So if you see ~From~ with
+just a space, it's the MBOX delimiter, and if you see ~From:~ with a
+colon, it's an email header.
+
+So notionally, a mailbox in MBOX format looks like this:
+
+#+begin_export latex
+\texttt{From MAILER-DAEMON Fri Jul  8 12:08:34 2011}\\
+\textcolor{DarkOrchid}{(first email goes here)}\\
+\texttt{From MAILER-DAEMON Fri Jul  8 12:08:34 2011}\\
+\textcolor{DarkOrchid}{(second email goes here)}\\
+\texttt{From MAILER-DAEMON Fri Jul  8 12:08:34 2011}\\
+\textcolor{DarkOrchid}{(third email goes here)}\\
+\vspace{-1em}
+#+end_export
+
+And so on.  We conclude this section by opening up our example
+mailbox.
+
 *** The Anatomy of an Email
+
+The email specification is very, very complex and has also evolved a
+great deal since the technology first emerged in the early 1970s.  It
+would take longer than one workshop session to cover all the details,
+so what we will instead do is focus on the parts of the email
+specification that are most relevant to what Attachment Converter
+does.
+
+Fundamentally, an email consists of /headers/ followed by a /body/.
+The headers function like metadata for an email; they provide an
+informational summary about what's in the email either to the
+recipient or to the recipient's email software.  The body is the main
+part of the email, as in the part the recipient is meant to see.
+
+It might surprise you to hear that you can have an email with no body,
+but if you think about it, that happens every time you accidentally
+hit send before typing anything.  But although there are emails with
+no body, you can't have an email with no headers.  The two required
+headers are a date header and a from header, they don't have to come
+in any particular order, and they look like this:
+
+#+begin_example
+  Date: Tue, 10 Aug 2004 14:17:45 -0500
+  From: Daffy Duck <daffyduck@uchicago.edu>
+#+end_example
+
+It's also possible to have:
+
+- a body with just text and no attachment
+- a body that is nothing but an attachment
+
+
+but you're probably used to emails with multipart bodies, where the
+first part is some text and the second part is an attachment
 
 **** MIME types
 
