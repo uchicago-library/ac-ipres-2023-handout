@@ -3,6 +3,8 @@
 #+Author: Nishchay Karle, Obi Obetta, Matt Teichman
 #+Title: Attachment Converter Workshop, iPres 2023
 
+#+EMAIL:
+#+OPTIONS: email:off
 #+OPTIONS: toc:nil num:t tags:nil email:off ^:{} ':t
 #+LATEX_CLASS: article
 #+LATEX_HEADER: \usepackage[margin=1.1in]{geometry}
@@ -430,7 +432,7 @@ In this demo, we:
   + TIFF
   + PDF-A-1b
 
-** Background
+* Background
 
 You're most likely used to using email clients, whether they're
 web-based, like GMail or Hotmail, or run as apps on your computer,
@@ -454,7 +456,7 @@ of individual emails together into a /mailbox/, such as *Inbox*, *Sent
 Mail*, or *Trash*.  Attachment Converter uses one of the oldest and
 most universal data formats for mailboxes, called [[https://www.loc.gov/preservation/digital/formats/fdd/fdd000383.shtml][MBOX]].  
 
-*** The MBOX format
+** The MBOX format
 
 MBOX is an old, standard, and human-readable format.  In other words,
 rather than packing large collections of individual emails into a raw
@@ -465,18 +467,18 @@ and just look at the information that's in there.
 
 The MBOX format is very simple.  One thing that makes it simple
 compared to other formats is that it saves each mailbox in a single
-file.  That makes it quite easy to browse through large sets of
-mailboxes, move them around, back them up, and so forth.  Another
-thing that makes it simple is that it's nothing other than a format
-for putting emails into a sequence.  So an MBOX is essentially a big
-list: one email followed by another until you're through all of them.
-This is as opposed to e.g. trying to group/organize the emails in some
-way, or trying to include information about what emails are contained
-in it.  (Later on in this workshop, we'll demonstrate Attachment
-Converter's "report" feature, which you can run on an MBOX when you're
-browsing around to get some basic information about it.)
+file.  That makes it easy to browse through large sets of mailboxes,
+move them around, back them up, and so forth.  Another thing that
+makes it simple is that it's nothing other than a format for putting
+emails into a sequence.  So an MBOX is essentially a big list: one
+email followed by another until you're through all of them.  This is
+as opposed to e.g.@@latex:\@ @@ trying to group/organize the emails in some way, or
+trying to include information about what emails are contained in it.
+(Later on in this workshop, we'll demonstrate Attachment Converter's
+"report" feature, which you can run on an MBOX when you're browsing
+around to get some basic information about it.)
 
-*** The Delimiter: =From= 
+** The Delimiter: =From= 
 
 Any data arranged into the form of a list on a computer needs some way
 of specifying where each item in the list starts and where it
@@ -497,12 +499,11 @@ mailbox.  The rules for constructing a From line go like this:
 
 So the following are all perfectly good From lines:
 
-
 - =From Matt Teichman=
 - =From MAILER-DAEMON Fri Jul  8 12:08:34 2011=
-- =From vd7g8o73 2vfy32v7y3298v7b3r8qv3278r=
+- =From ...malomadingdong=
+- =From vd7g8o73 2vfy^&32v///\\7y329?~````xxx=
 - =From= (with a space before the line break)
-
 
 One thing that's potentially confusing about From lines is that emails
 typically come with a header telling you who the sender was.  That
@@ -533,7 +534,7 @@ So notionally, a mailbox in MBOX format looks like this:
 And so on.  We conclude this section by opening up our example
 mailbox.
 
-*** The Anatomy of an Email
+** The Anatomy of an Email
 
 The email specification is very, very complex and has also evolved a
 great deal since the technology first emerged in the early 1970s.  It
@@ -549,9 +550,10 @@ recipient or to the recipient's email software.  The body is the main
 part of the email, as in the part the recipient is meant to see.
 
 It might surprise you to hear that you can have an email with no body,
-but if you think about it, that happens every time you accidentally
-hit send before typing anything.  But although there are emails with
-no body, you can't have an email with no headers.  The two required
+but if you think about it, every time you accidentally hit send before
+typing anything could be a case of that, depending on how your email
+software decides to do it.  But although you can have emails with no
+body, you can't have an email with no headers.  The two required
 headers are a date header and a from header, they don't have to come
 in any particular order, and they look like this:
 
@@ -560,18 +562,169 @@ in any particular order, and they look like this:
   From: Daffy Duck <daffyduck@uchicago.edu>
 #+end_example
 
-It's also possible to have:
+It's also possible to have a body with just text and no attachment. In
+that case, the body of an email looks like what you'd expect:
 
-- a body with just text and no attachment
-- a body that is nothing but an attachment
+#+begin_example
+  Dear Road Runner,
 
+  For my whole life, I've wondered what the Warner Brothers foley
+  artists might have done to create that sound of you blowing a
+  raspberry with your tongue.  My best guess is that it's the sound of a
+  person moving their hand over the top of a wet Coke bottle, but I
+  can't be sure.  If there is anything you could do to clear this
+  mystery up for me, I would be eternally grateful.
 
-but you're probably used to emails with multipart bodies, where the
-first part is some text and the second part is an attachment
+  Yours truly,
+  Porky Pig
+#+end_example
 
-**** MIME types
+In that bare bones type of email, that's it!  When you're finished the
+text, you've reached the end of the email.  No attachments yet.  If we
+want to start having attachments, we need to look at an extension to
+the original email specification that was created in the early 1990s,
+called Multipurpose Internet Mail Extensions, or [[https://datatracker.ietf.org/doc/html/rfc2045][MIME]].
 
-**** Base64 data
+*** MIME types
+
+Normally when we talk about attachments, we think of e.g. a file that
+you selected from your computer that you are sending to someone along
+with an email.  But an attachment can also just be another email---for
+example, that's what a lot of email software does when you forward an
+email to someone else: you write what you're going to write, but then
+attached to your comment on the forwarded email is the email you are
+forwarding.  Believe it or not, in an even more exotic type of case,
+you can put a file straight into the body of an email, not as an
+attachment.
+
+This is relevant for our purposes, because insofar as the email
+specification is concerned, attached emails and attached files enjoy
+equal status as attachments, even though colloquially we tend to
+assume that an attachment is a file you're loading into an email from
+your computer.  We will deal with this potential terminological
+confusion by continuing to use the term /attachment/ to specifically
+mean /file attachment/ in contexts where it is clear, but insisting on
+the term /file attachment/ where there is ambiguity.
+
+Like the email specification, the MIME specification is incredibly
+complicated, and allows you to do many, many different things with
+emails.  In this workshop, we are going to focus on the fact that MIME
+allows you to write an email with multiple parts, each of which are
+bodies of an email. So, for example, when you write an email to your
+friend with a note in the body, followed by a file you want to send to
+them, that is the format in which it will get sent out.
+
+Let's focus on that pretty ordinary type of case. After the two
+required headers, the from header and the date header, there will be
+the following MIME version header, which is required:
+
+#+begin_example
+  MIME-Version: 1.0
+#+end_example
+
+After that, you'll usually find the following optional but
+bog-standard content type header, which tells you what kind of
+MIME-encoded data you're looking at:
+
+#+begin_example
+  Content-Type: multipart/mixed; 
+            boundary=name-of-boundary-someone-chose
+#+end_example
+
+That tells you that what you will be looking at next is a sequence of
+MIME-encoded email bodies, and what the delimiter for that sequence of
+email bodies will be.  If there are no more headers in the main email,
+then the list of headers will end with two line breaks, followed by a
+delimiter, to show that the next thing coming in our email will be the
+list of MIME headers that provide information about the first email
+body in the multipart list:
+
+#+begin_example
+  --name-of-boundary-someone-chose
+#+end_example
+
+What headers are those?  There could be a lot of them, but there will
+normally at least be a content type header:
+
+#+begin_example
+  Content-Type: text/plain
+#+end_example
+
+After the MIME headers for the first email body in the list are
+finished, there will be two line breaks, followed by the message you
+wrote to your friend, followed by another boundary:
+
+#+begin_example
+  Dear Foghorn Leghorn,
+
+  Have you ever wondered there is more to life than being a cartoon?
+  I've wondered about this ever since I first realized I wasn't real
+  during the short animation, Rabbit Rampage.  Eager to hear your
+  thoughts.  I'm attaching a book on existential phenomenology by Simone
+  de Beauvoir that I think might help.
+
+  Yours truly,
+  -Elmer Fudd
+
+  --name-of-boundary-someone-chose
+#+end_example
+
+The boundary tells us that we're moving onto the second part of the
+MIME multipart body, which is a second email body.  This will be the
+file attachment, which we look at in the next section.
+
+*** Base64 data
+
+You might be surprised to hear that when you attach a file to an
+email, it isn't a file anymore.  That is, it isn't some data sitting
+on your hard drive, physically arranged on disk into whatever types of
+blocks your operating system understands, the way files on your
+computer all are.  The data within a file are nothing more than a
+sequence of numbers, and when you move that sequence of numbers off
+your hard disk and into an email, the sequence goes straight into the
+email.  However, that sequence of numbers doesn't go into the email in
+its raw form; if it did, then your text editor would likely get
+confused when you tried to open it, and everything would probably look
+bizarre.  So under MIME, what we do is convert the data in your file
+into a plaintext representation, in which every number in the sequence
+is converted to a printable character that you can view in a text
+editor.
+
+There are a few ways of doing that conversion, but the one we're going
+to focus on is Base64 encoding.  Base64 encoding turns raw binary data
+into something that's pretty compact, and also pretty painless to look
+at.  Here's what it looks like:
+
+#+begin_example
+  JVBERi0xLjcKJeLjz9MKMTU1IDAgb2JqCjw8L0ZpbHRlci9GbGF0ZURlY29kZS9MZW5ndGggMTI1
+  Nz4+c3RyZWFtCnjavVjbjts2EH3XV+gLZN4vwGKBbDYpAjQPbfwDthwDabtpG+T/UQ05JIeySCtp
+  EOwKulEzZ25nhj68+vL10/U0fx2f3r8e/h3YCH+//zJIM1rnJz2+DFp7vP5r+DD8NrxZVh4+/HP6
+  PD48HN6/fvc8ssfH8ekZvn86Doe3fORiPF6DDCMm5sbjZXhgTGrGlGNM++U84/Xp8fjH8Oa4KZdv
+  y7V2YqoWzWRHjGjDU3fhxbOyoGP5X+61WA5Y+3F5dl6uzXJe1vPLHRxyGwdXdvIrKIs6dY6qQa0A
+  KOkZQDOoVkY4yuM6tdwvl0rjOoDr4jV8rwEmj2thDdwHswyuYWgeL7rB9IwDXaRUlAuuCvrn6JKw
+  XuH3tv4G3ofnCt1nwVX3YqfasZOsOEx4FOqic8BRwWCWAHV06G0dIe+pki5Q0wbK2f0koxG5m0i2
+  kUhMTV6t9Bl0AMNMgOOKkbmWbBDnEhltO7pdQ7fnE+e17q4Nvukv41f4Q0ZiBoXguh0+4g1S4sBw
+  k+BCm5GPjk9aZ40vQaMkdXZF7QkFvkt1s871/K2Lz8M3rL5PMqE2Uy2DnBSVnCGG1Fqy/NyzuEGX
+#+end_example
+
+...and so on, for pages and pages, depending on how big the file you
+Base64-encoded is.  Without going too far into the details of the
+encoding, the way it works is that each character in the above
+representation stands for a number between 0 and 63.  So you can
+represent the data inside of any file as a stream of readable
+characters.
+
+This gets us to the next part of our hypothetical email.  After the
+end of the first body in the MIME multipart, we get some MIME headers
+that describe the second part:
+
+#+begin_example
+  Content-Type: application/pdf
+  Content-Transfer-Encoding: base64
+  Content-Disposition: attachment; 
+          filename*=utf-8''beauvoir.pdf;
+          filename="beauvoir.pdf"
+#+end_example
 
 *** How To Convert an Outlook =.pst= to =.mbox= Format
 
@@ -597,4 +750,4 @@ first part is some text and the second part is an attachment
 
 **** rough overview of what they do
 
-*** Show and Tell: Here is How To Add a new Utility to Attachment Converter
+*** TODO Show and Tell: Here is How To Add a new Utility to Attachment Converter
