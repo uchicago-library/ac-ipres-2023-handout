@@ -1,4 +1,4 @@
-% Created 2023-09-12 Tue 16:25
+% Created 2023-09-13 Wed 13:03
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -44,11 +44,11 @@ mailbox to preservation formats.
 
 Then next few sections of the handout include background on the
 project for your reference, but when the workshop starts, we'll be
-working through the material on this handout starting with \hyperref[org76b7a9b]{section}
-\ref{org76b7a9b}.
+working through the material on this handout starting with \hyperref[org7d91ffb]{section}
+\ref{org7d91ffb}.
 
 \section{Project Website}
-\label{sec:orgaaad8f0}
+\label{sec:orgca84666}
 
 The project website is located here:
 
@@ -56,7 +56,7 @@ The project website is located here:
 
 
 \section{How to Participate in This Workshop}
-\label{sec:org9cea003}
+\label{sec:org531e7a3}
 
 There are two ways to participate in this workshop.  If you're feeling
 tech-savvy, we would encourage you to install the required software in
@@ -72,13 +72,13 @@ working at the command prompt.
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
-listen, and ask questions, please feel free to skip to \hyperref[org76b7a9b]{section}
-\ref{org76b7a9b}, which is what we'll be working off of during the
+listen, and ask questions, please feel free to skip to \hyperref[org7d91ffb]{section}
+\ref{org7d91ffb}, which is what we'll be working off of during the
 workshop---you won't need to set anything up on your computer in
 advance.
 
-\section{Advance Preparation \label{org7d354bc}}
-\label{sec:orge0a2838}
+\section{Advance Preparation \label{org86feb11}}
+\label{sec:orgcdaa0dc}
 
 If you're planning to type along with us on your computer during the
 workshop, then this is the section for you!
@@ -90,11 +90,11 @@ allow you to install software, so if you're attending this conference
 from a work machine, that might be something worth looking into with
 your system administrator.
 
-If you're on Windows, please skip to \hyperref[org4566a47]{section} \ref{org4566a47}.  If you're on a
-Mac, you can proceed to \hyperref[org52755c0]{section} \ref{org52755c0}.
+If you're on Windows, please skip to \hyperref[orgd38505a]{section} \ref{orgd38505a}.  If you're on a
+Mac, you can proceed to \hyperref[org216b5f7]{section} \ref{org216b5f7}.
 
-\subsection{macOS \label{org52755c0}}
-\label{sec:org3cc6296}
+\subsection{macOS \label{org216b5f7}}
+\label{sec:org3eb9ddb}
 
 If you're on a Mac, you'll need to open a Terminal, then install an
 open-source package manager, the \texttt{git} version control system, the
@@ -107,7 +107,7 @@ want to reach out to your system administrator to see whether they can
 grant you the appropriate privileges for doing so.
 
 \subsubsection{Install Homebrew}
-\label{sec:orga748e9f}
+\label{sec:orga2b9e98}
 
 There are various options for open source package managers on macOS,
 but we recommend using \href{https://brew.sh}{Homebrew}.  If you've never used it
@@ -133,7 +133,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 \normalsize
 
 \subsubsection{Install Libpst}
-\label{sec:org6df4943}
+\label{sec:org0576f97}
 
 The last thing we'll ask you to install is Libpst, the software we
 will use to convert from Outlook \texttt{.pst} to MBOX format during the
@@ -145,10 +145,10 @@ $ brew install libpst
 
 Once you've reached this point on your Mac, you can skip the next
 section---which is our Windows-specific setup instructions---and
-proceed straight to section \ref{org6dd59fd}.
+proceed straight to section \ref{org91a850d}.
 
-\subsection{Windows (Debian WSL) \label{org4566a47}}
-\label{sec:orgbc7d770}
+\subsection{Windows (Debian WSL) \label{orgd38505a}}
+\label{sec:orgb62f2ea}
 
 Attachment Converter is a UNIX application, which means that in order
 to run it on Windows, you'll need to install the \href{https://en.wikipedia.org/wiki/Windows\_Subsystem\_for\_Linux}{Windows Subsystem for
@@ -166,7 +166,7 @@ machine to follow these instructions.  If you don't, check with your
 system administrator about how to get them.
 
 \subsubsection{Set up the Debian WSL}
-\label{sec:org2365a12}
+\label{sec:orgb6024d9}
 
 To set up the Debian WSL:
 
@@ -197,7 +197,7 @@ Windows Start Menu.  If it asks you to log in, use the username and
 password you chose during the installation process.
 
 \subsubsection{Prep WSL for installing}
-\label{sec:org3b21f09}
+\label{sec:orgb858c2f}
 
 Before installing everything to your WSL, it will be necessary to
 synchronize your machine's installation with the website you're going
@@ -226,7 +226,7 @@ $ sudo apt upgrade
 to the screen.  If it prompts to say yes, say yes.
 
 \subsubsection{Create Installation Directory}
-\label{sec:org93607bd}
+\label{sec:orgaf34f48}
 
 Next, you need to create the directory the Attachment Converter
 program is going to get installed to, which you can do by running
@@ -238,7 +238,7 @@ $ mkdir bin
 \end{verbatim}
 
 \subsubsection{Install Version Control Software}
-\label{sec:org9ae1347}
+\label{sec:orgc39014f}
 
 Now that your UNIX environment is set up, the next step is to install
 version control software, which in this case is Git.  To do that, run
@@ -258,7 +258,7 @@ Git, say yes.  (You'll be saying yes to everything that comes up in
 these instructions)
 
 \subsubsection{Install GNU Make}
-\label{sec:org93fa87f}
+\label{sec:org15c339e}
 
 The software we're going to use to compile Attachment Converter is
 called Make.  To install it, run this command:
@@ -268,7 +268,7 @@ $ sudo apt install make
 \end{verbatim}
 
 \subsubsection{Install Libpst}
-\label{sec:orged5b193}
+\label{sec:org7917bf1}
 
 Finally, we're going to ask you to install Libpst, which is a freely
 available utility for converting Outlook \texttt{.pst} files to MBOX
@@ -280,11 +280,11 @@ $ sudo apt install libpst4
 \end{verbatim}
 
 Once you've reached this point on your Windows machine, you're ready
-to go to \hyperref[org6dd59fd]{the next section}, in which we show you how to compile
+to go to \hyperref[org91a850d]{the next section}, in which we show you how to compile
 Attachment Converter into an executable that you can run.
 
-\subsection{Compile Attachment Converter \label{org6dd59fd}}
-\label{sec:org542cf46}
+\subsection{Compile Attachment Converter \label{org91a850d}}
+\label{sec:org75b748e}
 
 Now that you're set up with the basic software you need, whether
 you're on Windows or a Mac, the next step is to download the source
@@ -293,7 +293,7 @@ run, and put the executable in a location where your Terminal can see
 it.
 
 \subsubsection{Get The Code}
-\label{sec:orgcd235bd}
+\label{sec:orgf9b973e}
 
 The first thing we need to do is download the source code for
 Attachment Converter.  The simplest way to do that is by using Git.
@@ -342,7 +342,7 @@ Now that you have the source code for Attachment Converter, the next
 step is to compile it into an executable program.
 
 \subsubsection{Compiling, the Semi-Automated Way}
-\label{sec:org35c12c8}
+\label{sec:orgcedf207}
 
 Let's start with an overview.  The utility we're going to use to
 compile Attachment Converter is called Make.  If you're on Windows, we
@@ -418,7 +418,7 @@ $ echo "export PATH=~/bin:$PATH" >> ~/.zshrc
 Then close and reopen your Terminal.
 
 \subsubsection{Compiling, the Manual Step-By-Step Way}
-\label{sec:org130a176}
+\label{sec:org5dbf046}
 
 We've put a lot of work into making the semi-automated installation
 process via Make work, but it's complicated and there is always some
@@ -438,8 +438,8 @@ non-automated way can be found on our website here:
 That concludes our setup instructions!  The rest of this handout
 reflects what we will cover during the workshop proper.
 
-\section{During The Workshop \label{org76b7a9b}}
-\label{sec:orga7623d0}
+\section{During The Workshop \label{org7d91ffb}}
+\label{sec:org39d8b34}
 
 Welcome to our workshop!  We are excited to be here.
 
@@ -452,7 +452,7 @@ the original attachments in the emails from which they originated.
 Let's open the workshop with a quick demo of Attachment Converter.
 
 \subsection{Quick Demo}
-\label{sec:orgb5bf045}
+\label{sec:orgfadce02}
 
 In this demo, we:
 
@@ -478,7 +478,7 @@ emails
 \end{itemize}
 
 \section{Background}
-\label{sec:org0d8fd9c}
+\label{sec:org4f14ac1}
 
 You're most likely used to using email clients, whether they're
 web-based, like GMail or Hotmail, or run as apps on your computer,
@@ -503,7 +503,11 @@ Mail}, or \textbf{Trash}.  Attachment Converter uses one of the oldest and
 most universal data formats for mailboxes, called \href{https://www.loc.gov/preservation/digital/formats/fdd/fdd000383.shtml}{MBOX}.  
 
 \subsection{The MBOX format}
-\label{sec:org1cd5526}
+\label{sec:org544870e}
+
+Attachment Converter works with mailboxes in MBOX format, which is the
+form in which GMail gives you your email when you request a local
+backup from your GMail account.
 
 MBOX is an old, standard, and human-readable format.  In other words,
 rather than packing large collections of individual emails into a raw
@@ -526,7 +530,7 @@ trying to include information about what emails are contained in it.
 around to get some basic information about it.)
 
 \subsection{The Delimiter: \texttt{From}}
-\label{sec:org2ae1a54}
+\label{sec:orgb680865}
 
 Any data arranged into the form of a list on a computer needs some way
 of specifying where each item in the list starts and where it
@@ -585,7 +589,7 @@ And so on.  We conclude this section by opening up our example
 mailbox.
 
 \subsection{The Anatomy of an Email}
-\label{sec:org838cda3}
+\label{sec:org918fe90}
 
 The email specification is very, very complex and has also evolved a
 great deal since the technology first emerged in the early 1970s.  It
@@ -637,7 +641,7 @@ the original email specification that was created in the early 1990s,
 called Multipurpose Internet Mail Extensions, or \href{https://datatracker.ietf.org/doc/html/rfc2045}{MIME}.
 
 \subsubsection{MIME types}
-\label{sec:orgb75fad2}
+\label{sec:org1bec629}
 
 Normally when we talk about attachments, we think of e.g. a file that
 you selected from your computer that you are sending to someone along
@@ -726,7 +730,7 @@ MIME multipart body, which is a second email body.  This will be the
 file attachment, which we look at in the next section.
 
 \subsubsection{Base64 data}
-\label{sec:org4590543}
+\label{sec:orgba9d1eb}
 
 You might be surprised to hear that when you attach a file to an
 email, it isn't a file anymore.  That is, it isn't some data sitting
@@ -738,7 +742,7 @@ your hard disk and into an email, the sequence goes straight into the
 email.  However, that sequence of numbers doesn't go into the email in
 its raw form; if it did, then your text editor would likely get
 confused when you tried to open it, and everything would probably look
-messed up.  So under MIME, what we do is convert the data in your file
+bizarre.  So under MIME, what we do is convert the data in your file
 into a plaintext representation, in which every number in the sequence
 is converted to a printable character that you can view in a text
 editor.
@@ -779,46 +783,159 @@ Content-Disposition: attachment;
         filename="beauvoir.pdf"
 \end{verbatim}
 
+The content type header tells us that what we're about to look at is a
+PDF.  That plus the fact that the content disposition says
+\texttt{attachment} tells us that it is a file attachment.  The content
+disposition header also contains additional header field paramters
+called \texttt{filename} and \texttt{filename*}, respectively, which is what your
+email software is going to use to determine the name of the file when
+the recipient saves it to their machine.  Annoyingly, the \texttt{filename*}
+header field parameter is not part of the MIME specification---the
+MIME specification just says that any header field parameters your
+email software chooses to create, and also that it can have as many of
+them as your email software chooses to create.  But although it is not
+actually part of the MIME specification, most email software you'll
+use will nonetheless look for that header field parameter and use it
+to determine the attachment's file name for when it gets saved to the
+recipient's machine.
+
+After the MIME headers for the attached PDF will be the Base64-encoded
+data of the PDF itself, which will look like the above text and could
+take up many pages, depending on how large the original PDF was.
+Although many mail user agents such as GMail impose a 25-megabyte
+restriction on attachments, the email specification itself imposes no
+such restriction.
+
+After the data for the PDF ends, there will be two line breaks,
+followed by one final MIME boundary:
+
+\begin{verbatim}
+--name-of-boundary-someone-chose
+\end{verbatim}
+
+That concludes our hypothetical example of an email with a prose body
+and one file attachment, whose body is a multipart MIME with one
+\texttt{text/plain} email body and one PDF file attachment body.
+
 \subsubsection{How To Convert an Outlook \texttt{.pst} to \texttt{.mbox} Format}
-\label{sec:orgf4e4ab4}
+\label{sec:org3035ffb}
+
+At the University of Chicago, we are usually given mailboxes in one of
+two forms for accessioning: MBOX and Outlook PST.  In order to convert
+the attachments that occur in our PST collections, we use an
+application called \texttt{readpst} to convert them.
+
+Assuming your input \texttt{.pst} file is called \texttt{mailbox.pst} and that you
+are currently in the directory where \texttt{mailbox.pst} is located, then
+the command to run \texttt{readpst} is as follows:
+
+\begin{verbatim}
+$ readpst mailbox.pst
+\end{verbatim}
 
 \subsection{More Detailed Demo}
-\label{sec:orgc8f006f}
+\label{sec:org8d1864c}
 
-\subsubsection{Installing Attachment Converter}
-\label{sec:org5f50291}
+In the next part of the workshop, we'll redo the demo we did at the
+beginning, knowing what we now know about how emails are structured
+and how MIME multiparts allow us to attach files to them.
 
-\subsubsection{A Simple Example of Running Attachment Converter}
-\label{sec:org84120d7}
+We begin by installing Attachment Converter.  For more info on that,
+please see our \hyperref[org86feb11]{pre-workshop installation instructions}.  After the
+installation, we'll run Attachment Converter once again on the example
+MBOX we used during the initial demo.
+
+Next, we'll take a look at what Attachment Converter did to the
+attachments in our example MBOX.
 
 \subsubsection{Looking At The Output}
-\label{sec:org9ffba8e}
+\label{sec:org8b54bae}
+
+We saw during the demo earlier that when we opened the converted MBOX
+in Apple Mail, the attachments appeared next to the originals.  What
+we are now in a position to do is open the converted MBOX in a text
+editor and see what it really did, looking at the raw data.
+
+Let's start with the \texttt{.doc} attachment, i.e.\@  the podcast
+transcription.  This is what the headers for the original look like:
+
+\begin{verbatim}
+Content-Type: application/msword
+Content-Disposition: attachment;
+ filename="Episode 146 Gaurav Venkataraman discusses memory in RNA and DNA.doc"
+Content-Transfer-Encoding: base64
+\end{verbatim}
+
+All good; that's what it looked like before.  Now if we scroll down,
+past all the Base64 data for the document, we can see the MIME headers
+for the converted PDF-A copy that Attachment Converter created:
+
+\footnotesize
+
+\begin{verbatim}
+Content-Type: application/pdf
+Content-Disposition: attachment;
+        filename="Episode 146 Gaurav Venkataraman discusses memory in RNA and DNA_CONVERTED1694624784.pdf
+X-Attachment-Converter: converted;
+        source-type=application/msword;
+        target-type=application/pdf;
+        time-stamp=1694624784;
+        conversion-id=soffice-doc-to-pdfa;
+        original-file-hash=305817139
+\end{verbatim}
+
+\normalsize
+
+We can see here that Attachment Converter added a special header
+called \texttt{X-Attachment-Converter} featuring information about the
+conversion that took place.  What is says is:
+
+\begin{itemize}
+\item the original attachment was a \texttt{.doc} file
+\item it got converted to a PDF-A
+\item when it was converted (in a special numerical format)
+\item the name of this conversion in the configuration file
+\item here is number identifying the data from the
+original file, for debugging purposes
+\end{itemize}
+
+We can tell from the fact that the header \texttt{X-Attachment-Converter}
+starts with \texttt{X} that it is a custom header our application put into
+the email.  Email software knows it can safely ignore any header that
+starts with the letter \texttt{X}, but it can also be set up to pay attention
+to the information in there, if it wants to do something special when
+it sees a header with a certain name.  In our case, we put this
+information there both because Attachment Converter itself needs it,
+and because we would like future researchers to have a record of where
+converted attachments come from in the email containing them.
+
+Underneath is the 
 
 \begin{enumerate}
 \item The Headers that \texttt{attc} inserts
-\label{sec:org1c73bbe}
+\label{sec:orged0c22c}
 
 \item The Data that \texttt{attc} inserts
-\label{sec:orgd75445a}
+\label{sec:orgb68480c}
 \end{enumerate}
 
 \subsection{Advanced Configuration}
-\label{sec:org24eaae3}
+\label{sec:orgcc91458}
 
-\subsubsection{Attachment Converter's Configuration File}
-\label{sec:org377f8c9}
+TBD.  
 
-\subsubsection{A Glance at our Shell Scripts}
-\label{sec:orgdeb59e2}
+We provided this handout early so that if you wanted to follow the
+setup instructions before the workshop, you could.  But we're still
+working on the final section on configuration in advance of the
+workshop.
 
-\begin{enumerate}
-\item where they go
-\label{sec:orgd26cdb6}
+During the workshop, you should be able to get a copy of the updated
+handout from the Box folder.  If you've reached this point and would
+like to use this section on configuration for reference, we would
+encourage you to download the latest copy.
 
-\item rough overview of what they do
-\label{sec:orgd661974}
-\end{enumerate}
+If you aren't sure whether the latest materials are up yet, please
+check our website for updates:
 
-\subsubsection{{\bfseries\sffamily TODO} Show and Tell: Here is How To Add a new Utility to Attachment Converter}
-\label{sec:orga7d616d}
+\url{http://dldc.lib.uchicago.edu/open/attachment-converter}
 \end{document}

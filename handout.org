@@ -458,6 +458,10 @@ most universal data formats for mailboxes, called [[https://www.loc.gov/preserva
 
 ** The MBOX format
 
+Attachment Converter works with mailboxes in MBOX format, which is the
+form in which GMail gives you your email when you request a local
+backup from your GMail account.
+
 MBOX is an old, standard, and human-readable format.  In other words,
 rather than packing large collections of individual emails into a raw
 binary data format, the mailbox containing emails is itself also
@@ -726,15 +730,132 @@ that describe the second part:
           filename="beauvoir.pdf"
 #+end_example
 
+The content type header tells us that what we're about to look at is a
+PDF.  That plus the fact that the content disposition says
+=attachment= tells us that it is a file attachment.  The content
+disposition header also contains additional header field paramters
+called =filename= and =filename*=, respectively, which is what your
+email software is going to use to determine the name of the file when
+the recipient saves it to their machine.  Annoyingly, the =filename*=
+header field parameter is not part of the MIME specification---the
+MIME specification just says that any header field parameters your
+email software chooses to create, and also that it can have as many of
+them as your email software chooses to create.  But although it is not
+actually part of the MIME specification, most email software you'll
+use will nonetheless look for that header field parameter and use it
+to determine the attachment's file name for when it gets saved to the
+recipient's machine.
+
+After the MIME headers for the attached PDF will be the Base64-encoded
+data of the PDF itself, which will look like the above text and could
+take up many pages, depending on how large the original PDF was.
+Although many mail user agents such as GMail impose a 25-megabyte
+restriction on attachments, the email specification itself imposes no
+such restriction.
+
+After the data for the PDF ends, there will be two line breaks,
+followed by one final MIME boundary:
+
+#+begin_example
+  --name-of-boundary-someone-chose
+#+end_example
+
+That concludes our hypothetical example of an email with a prose body
+and one file attachment, whose body is a multipart MIME with one
+=text/plain= email body and one PDF file attachment body.
+
 *** How To Convert an Outlook =.pst= to =.mbox= Format
+
+At the University of Chicago, we are usually given mailboxes in one of
+two forms for accessioning: MBOX and Outlook PST.  In order to convert
+the attachments that occur in our PST collections, we use an
+application called =readpst= to convert them.
+
+Assuming your input =.pst= file is called =mailbox.pst= and that you
+are currently in the directory where =mailbox.pst= is located, then
+the command to run =readpst= is as follows:
+
+#+begin_example
+  $ readpst mailbox.pst
+#+end_example
 
 ** More Detailed Demo
 
-*** Installing Attachment Converter
+In the next part of the workshop, we'll redo the demo we did at the
+beginning, knowing what we now know about how emails are structured
+and how MIME multiparts allow us to attach files to them.
 
-*** A Simple Example of Running Attachment Converter
+We begin by installing Attachment Converter.  For more info on that,
+please see our [[advance][pre-workshop installation instructions]].  After the
+installation, we'll run Attachment Converter once again on the example
+MBOX we used during the initial demo.
+
+Next, we'll take a look at what Attachment Converter did to the
+attachments in our example MBOX.
 
 *** Looking At The Output
+
+We saw during the demo earlier that when we opened the converted MBOX
+in Apple Mail, the attachments appeared next to the originals.  What
+we are now in a position to do is open the converted MBOX in a text
+editor and see what it really did, looking at the raw data.
+
+Let's start with the =.doc= attachment, i.e.@@latex:\@ @@ the podcast
+transcription.  This is what the headers for the original look like:
+
+#+begin_example
+  Content-Type: application/msword
+  Content-Disposition: attachment;
+   filename="Episode 146 Gaurav Venkataraman discusses memory in RNA and DNA.doc"
+  Content-Transfer-Encoding: base64
+#+end_example
+
+All good; that's what it looked like before.  Now if we scroll down,
+past all the Base64 data for the document, we can see the MIME headers
+for the converted PDF-A copy that Attachment Converter created:
+
+#+begin_export latex
+\footnotesize
+#+end_export
+
+#+begin_example
+  Content-Type: application/pdf
+  Content-Disposition: attachment;
+          filename="Episode 146 Gaurav Venkataraman discusses memory in RNA and DNA_CONVERTED1694624784.pdf
+  X-Attachment-Converter: converted;
+          source-type=application/msword;
+          target-type=application/pdf;
+          time-stamp=1694624784;
+          conversion-id=soffice-doc-to-pdfa;
+          original-file-hash=305817139
+#+end_example
+
+#+begin_export latex
+\normalsize
+#+end_export
+
+We can see here that Attachment Converter added a special header
+called =X-Attachment-Converter= featuring information about the
+conversion that took place.  What is says is:
+
+- the original attachment was a =.doc= file
+- it got converted to a PDF-A
+- when it was converted (in a special numerical format)
+- the name of this conversion in the configuration file
+- here is number identifying the data from the
+  original file, for debugging purposes
+
+We can tell from the fact that the header =X-Attachment-Converter=
+starts with =X= that it is a custom header our application put into
+the email.  Email software knows it can safely ignore any header that
+starts with the letter =X=, but it can also be set up to pay attention
+to the information in there, if it wants to do something special when
+it sees a header with a certain name.  In our case, we put this
+information there both because Attachment Converter itself needs it,
+and because we would like future researchers to have a record of where
+converted attachments come from in the email containing them.
+
+Underneath is the 
 
 **** The Headers that =attc= inserts
 
@@ -742,12 +863,19 @@ that describe the second part:
 
 ** Advanced Configuration
 
-*** Attachment Converter's Configuration File
+TBD.  
 
-*** A Glance at our Shell Scripts
+We provided this handout early so that if you wanted to follow the
+setup instructions before the workshop, you could.  But we're still
+working on the final section on configuration in advance of the
+workshop.
 
-**** where they go
+During the workshop, you should be able to get a copy of the updated
+handout from the Box folder.  If you've reached this point and would
+like to use this section on configuration for reference, we would
+encourage you to download the latest copy.
 
-**** rough overview of what they do
+If you aren't sure whether the latest materials are up yet, please
+check our website for updates:
 
-*** TODO Show and Tell: Here is How To Add a new Utility to Attachment Converter
+http://dldc.lib.uchicago.edu/open/attachment-converter
