@@ -1,4 +1,4 @@
-% Created 2023-09-13 Wed 13:03
+% Created 2023-09-13 Wed 14:17
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -44,11 +44,11 @@ mailbox to preservation formats.
 
 Then next few sections of the handout include background on the
 project for your reference, but when the workshop starts, we'll be
-working through the material on this handout starting with \hyperref[org7d91ffb]{section}
-\ref{org7d91ffb}.
+working through the material on this handout starting with \hyperref[org1e8ec0a]{section}
+\ref{org1e8ec0a}.
 
 \section{Project Website}
-\label{sec:orgca84666}
+\label{sec:org4ee3ead}
 
 The project website is located here:
 
@@ -56,7 +56,7 @@ The project website is located here:
 
 
 \section{How to Participate in This Workshop}
-\label{sec:org531e7a3}
+\label{sec:org801c501}
 
 There are two ways to participate in this workshop.  If you're feeling
 tech-savvy, we would encourage you to install the required software in
@@ -72,13 +72,13 @@ working at the command prompt.
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
-listen, and ask questions, please feel free to skip to \hyperref[org7d91ffb]{section}
-\ref{org7d91ffb}, which is what we'll be working off of during the
+listen, and ask questions, please feel free to skip to \hyperref[org1e8ec0a]{section}
+\ref{org1e8ec0a}, which is what we'll be working off of during the
 workshop---you won't need to set anything up on your computer in
 advance.
 
-\section{Advance Preparation \label{org86feb11}}
-\label{sec:orgcdaa0dc}
+\section{Advance Preparation \label{org1fd8c0a}}
+\label{sec:orgd29a629}
 
 If you're planning to type along with us on your computer during the
 workshop, then this is the section for you!
@@ -90,11 +90,11 @@ allow you to install software, so if you're attending this conference
 from a work machine, that might be something worth looking into with
 your system administrator.
 
-If you're on Windows, please skip to \hyperref[orgd38505a]{section} \ref{orgd38505a}.  If you're on a
-Mac, you can proceed to \hyperref[org216b5f7]{section} \ref{org216b5f7}.
+If you're on Windows, please skip to \hyperref[org1a1609b]{section} \ref{org1a1609b}.  If you're on a
+Mac, you can proceed to \hyperref[orga6c0eb0]{section} \ref{orga6c0eb0}.
 
-\subsection{macOS \label{org216b5f7}}
-\label{sec:org3eb9ddb}
+\subsection{macOS \label{orga6c0eb0}}
+\label{sec:org3d41b5d}
 
 If you're on a Mac, you'll need to open a Terminal, then install an
 open-source package manager, the \texttt{git} version control system, the
@@ -107,7 +107,7 @@ want to reach out to your system administrator to see whether they can
 grant you the appropriate privileges for doing so.
 
 \subsubsection{Install Homebrew}
-\label{sec:orga2b9e98}
+\label{sec:org7e5f85d}
 
 There are various options for open source package managers on macOS,
 but we recommend using \href{https://brew.sh}{Homebrew}.  If you've never used it
@@ -133,7 +133,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 \normalsize
 
 \subsubsection{Install Libpst}
-\label{sec:org0576f97}
+\label{sec:orgfc904cc}
 
 The last thing we'll ask you to install is Libpst, the software we
 will use to convert from Outlook \texttt{.pst} to MBOX format during the
@@ -145,10 +145,10 @@ $ brew install libpst
 
 Once you've reached this point on your Mac, you can skip the next
 section---which is our Windows-specific setup instructions---and
-proceed straight to section \ref{org91a850d}.
+proceed straight to section \ref{orgdcaaf8d}.
 
-\subsection{Windows (Debian WSL) \label{orgd38505a}}
-\label{sec:orgb62f2ea}
+\subsection{Windows (Debian WSL) \label{org1a1609b}}
+\label{sec:orgb50ac65}
 
 Attachment Converter is a UNIX application, which means that in order
 to run it on Windows, you'll need to install the \href{https://en.wikipedia.org/wiki/Windows\_Subsystem\_for\_Linux}{Windows Subsystem for
@@ -166,7 +166,7 @@ machine to follow these instructions.  If you don't, check with your
 system administrator about how to get them.
 
 \subsubsection{Set up the Debian WSL}
-\label{sec:orgb6024d9}
+\label{sec:org1a3b40a}
 
 To set up the Debian WSL:
 
@@ -197,7 +197,7 @@ Windows Start Menu.  If it asks you to log in, use the username and
 password you chose during the installation process.
 
 \subsubsection{Prep WSL for installing}
-\label{sec:orgb858c2f}
+\label{sec:org8875279}
 
 Before installing everything to your WSL, it will be necessary to
 synchronize your machine's installation with the website you're going
@@ -226,7 +226,7 @@ $ sudo apt upgrade
 to the screen.  If it prompts to say yes, say yes.
 
 \subsubsection{Create Installation Directory}
-\label{sec:orgaf34f48}
+\label{sec:org4771c70}
 
 Next, you need to create the directory the Attachment Converter
 program is going to get installed to, which you can do by running
@@ -238,7 +238,7 @@ $ mkdir bin
 \end{verbatim}
 
 \subsubsection{Install Version Control Software}
-\label{sec:orgc39014f}
+\label{sec:org33916dc}
 
 Now that your UNIX environment is set up, the next step is to install
 version control software, which in this case is Git.  To do that, run
@@ -258,7 +258,7 @@ Git, say yes.  (You'll be saying yes to everything that comes up in
 these instructions)
 
 \subsubsection{Install GNU Make}
-\label{sec:org15c339e}
+\label{sec:org340a140}
 
 The software we're going to use to compile Attachment Converter is
 called Make.  To install it, run this command:
@@ -268,7 +268,7 @@ $ sudo apt install make
 \end{verbatim}
 
 \subsubsection{Install Libpst}
-\label{sec:org7917bf1}
+\label{sec:orgbb06900}
 
 Finally, we're going to ask you to install Libpst, which is a freely
 available utility for converting Outlook \texttt{.pst} files to MBOX
@@ -280,11 +280,11 @@ $ sudo apt install libpst4
 \end{verbatim}
 
 Once you've reached this point on your Windows machine, you're ready
-to go to \hyperref[org91a850d]{the next section}, in which we show you how to compile
+to go to \hyperref[orgdcaaf8d]{the next section}, in which we show you how to compile
 Attachment Converter into an executable that you can run.
 
-\subsection{Compile Attachment Converter \label{org91a850d}}
-\label{sec:org75b748e}
+\subsection{Compile Attachment Converter \label{orgdcaaf8d}}
+\label{sec:orge2720cd}
 
 Now that you're set up with the basic software you need, whether
 you're on Windows or a Mac, the next step is to download the source
@@ -293,7 +293,7 @@ run, and put the executable in a location where your Terminal can see
 it.
 
 \subsubsection{Get The Code}
-\label{sec:orgf9b973e}
+\label{sec:orgcdefc54}
 
 The first thing we need to do is download the source code for
 Attachment Converter.  The simplest way to do that is by using Git.
@@ -342,7 +342,7 @@ Now that you have the source code for Attachment Converter, the next
 step is to compile it into an executable program.
 
 \subsubsection{Compiling, the Semi-Automated Way}
-\label{sec:orgcedf207}
+\label{sec:org9ed34eb}
 
 Let's start with an overview.  The utility we're going to use to
 compile Attachment Converter is called Make.  If you're on Windows, we
@@ -418,7 +418,7 @@ $ echo "export PATH=~/bin:$PATH" >> ~/.zshrc
 Then close and reopen your Terminal.
 
 \subsubsection{Compiling, the Manual Step-By-Step Way}
-\label{sec:org5dbf046}
+\label{sec:orgd84b9fa}
 
 We've put a lot of work into making the semi-automated installation
 process via Make work, but it's complicated and there is always some
@@ -438,21 +438,21 @@ non-automated way can be found on our website here:
 That concludes our setup instructions!  The rest of this handout
 reflects what we will cover during the workshop proper.
 
-\section{During The Workshop \label{org7d91ffb}}
-\label{sec:org39d8b34}
+\section{During The Workshop \label{org1e8ec0a}}
+\label{sec:org5cdf356}
 
 Welcome to our workshop!  We are excited to be here.
 
 Attachment Converter is a command-line utility that batch-converts all
 attachments in an email mailbox to preservation formats.  You give it
-your email in the form on an MBOX file, and it creates a new MBOX file
+your email in the form of an MBOX file, and it creates a new MBOX file
 with copies of all the attachments in preservation formats, next to
 the original attachments in the emails from which they originated.
 
 Let's open the workshop with a quick demo of Attachment Converter.
 
 \subsection{Quick Demo}
-\label{sec:orgfadce02}
+\label{sec:org23b4fdf}
 
 In this demo, we:
 
@@ -463,7 +463,6 @@ emails
 \begin{itemize}
 \item DOC
 \item DOCX
-\item XLSX
 \item JPEG
 \item PDF
 \end{itemize}
@@ -471,14 +470,13 @@ emails
 \begin{itemize}
 \item TXT, PDF-A-1b
 \item TXT, PDF-A-1b
-\item TSV, PDF-A-1b
 \item TIFF
 \item PDF-A-1b
 \end{itemize}
 \end{itemize}
 
 \section{Background}
-\label{sec:org4f14ac1}
+\label{sec:org4095b9d}
 
 You're most likely used to using email clients, whether they're
 web-based, like GMail or Hotmail, or run as apps on your computer,
@@ -496,14 +494,14 @@ around, it would be tricky, because it would be raw binary data.  But
 with email, the raw data are just sequences of characters you could
 read yourself, if you wanted to.
 
-The format in which an individual email is pretty standardized, but
-there are many different data formats for putting a large collection
-of individual emails together into a \emph{mailbox}, such as \textbf{Inbox}, \textbf{Sent
+The format of an individual email is pretty standardized, but there
+are many different data formats for putting a large collection of
+individual emails together into a \emph{mailbox}, such as \textbf{Inbox}, \textbf{Sent
 Mail}, or \textbf{Trash}.  Attachment Converter uses one of the oldest and
-most universal data formats for mailboxes, called \href{https://www.loc.gov/preservation/digital/formats/fdd/fdd000383.shtml}{MBOX}.  
+most universal data formats for mailboxes, called \href{https://www.loc.gov/preservation/digital/formats/fdd/fdd000383.shtml}{MBOX}.
 
 \subsection{The MBOX format}
-\label{sec:org544870e}
+\label{sec:org49dfe83}
 
 Attachment Converter works with mailboxes in MBOX format, which is the
 form in which GMail gives you your email when you request a local
@@ -530,7 +528,7 @@ trying to include information about what emails are contained in it.
 around to get some basic information about it.)
 
 \subsection{The Delimiter: \texttt{From}}
-\label{sec:orgb680865}
+\label{sec:org8f1f559}
 
 Any data arranged into the form of a list on a computer needs some way
 of specifying where each item in the list starts and where it
@@ -540,8 +538,8 @@ as a string of characters, the delimiter in that example would be a
 comma and the elements of the list would be \texttt{1}, \texttt{2}, and \texttt{3},
 respectively.
 
-In the case of an MBOX, each email is separated by a special line of
-text that is not considered to be part of the email---only part of the
+In the case of an MBOX, each email begins with a special line of text
+that is not considered to be part of the email---only part of the
 mailbox.  The rules for constructing a From line go like this:
 
 \begin{itemize}
@@ -575,7 +573,8 @@ you're looking at is to look for a colon.  So if you see \texttt{From} with
 just a space, it's the MBOX delimiter, and if you see \texttt{From:} with a
 colon, it's an email header.
 
-So notionally, a mailbox in MBOX format looks like this:
+So a mailbox in MBOX format is just a sequence of emails with a From
+line before each one.  Notionally, it looks like this:
 
 \texttt{From MAILER-DAEMON Fri Jul  8 12:08:34 2011}\\
 \textcolor{DarkOrchid}{(first email goes here)}\\
@@ -589,7 +588,7 @@ And so on.  We conclude this section by opening up our example
 mailbox.
 
 \subsection{The Anatomy of an Email}
-\label{sec:org918fe90}
+\label{sec:org8f866be}
 
 The email specification is very, very complex and has also evolved a
 great deal since the technology first emerged in the early 1970s.  It
@@ -599,7 +598,8 @@ specification that are most relevant to what Attachment Converter
 does.
 
 Fundamentally, an email consists of \emph{headers} followed by a \emph{body}.
-The headers function like metadata for an email; they provide an
+The headers are separated from the body by two line breaks.  The
+headers function like metadata for an email; they provide an
 informational summary about what's in the email either to the
 recipient or to the recipient's email software.  The body is the main
 part of the email, as in the part the recipient is meant to see.
@@ -641,7 +641,7 @@ the original email specification that was created in the early 1990s,
 called Multipurpose Internet Mail Extensions, or \href{https://datatracker.ietf.org/doc/html/rfc2045}{MIME}.
 
 \subsubsection{MIME types}
-\label{sec:org1bec629}
+\label{sec:org82023ec}
 
 Normally when we talk about attachments, we think of e.g. a file that
 you selected from your computer that you are sending to someone along
@@ -672,7 +672,8 @@ them, that is the format in which it will get sent out.
 
 Let's focus on that pretty ordinary type of case. After the two
 required headers, the from header and the date header, there will be
-the following MIME version header, which is required:
+the following MIME version header, which is required if you're using
+MIME:
 
 \begin{verbatim}
 MIME-Version: 1.0
@@ -691,16 +692,23 @@ That tells you that what you will be looking at next is a sequence of
 MIME-encoded email bodies, and what the delimiter for that sequence of
 email bodies will be.  If there are no more headers in the main email,
 then the list of headers will end with two line breaks, followed by a
-delimiter, to show that the next thing coming in our email will be the
-list of MIME headers that provide information about the first email
-body in the multipart list:
+delimiter:
 
 \begin{verbatim}
 --name-of-boundary-someone-chose
 \end{verbatim}
 
-What headers are those?  There could be a lot of them, but there will
-normally at least be a content type header:
+Note that the delimiter is whatever the application creating the email
+chose to name it, under the \texttt{boundary} header field parameter in the
+content type header, preceded by two hyphens \texttt{-{}-{}}.  The final
+delimiter in the sequence will have two additional hyphens at the end
+of it, before the line break.
+
+Back to the first delimiter.  Following the first delimiter will be
+the list of MIME headers that provide information about the first
+email body in the multipart list. What headers are those?  There could
+be a lot of them, but there will normally at least be a content type
+header:
 
 \begin{verbatim}
 Content-Type: text/plain
@@ -730,7 +738,7 @@ MIME multipart body, which is a second email body.  This will be the
 file attachment, which we look at in the next section.
 
 \subsubsection{Base64 data}
-\label{sec:orgba9d1eb}
+\label{sec:org743d746}
 
 You might be surprised to hear that when you attach a file to an
 email, it isn't a file anymore.  That is, it isn't some data sitting
@@ -772,8 +780,9 @@ represent the data inside of any file as a stream of readable
 characters.
 
 This gets us to the next part of our hypothetical email.  After the
-end of the first body in the MIME multipart, we get some MIME headers
-that describe the second part:
+end of the first body in the MIME multipart (in this example, the note
+from Elmer Fudd), we get some MIME headers that describe the second
+part:
 
 \begin{verbatim}
 Content-Type: application/pdf
@@ -786,18 +795,18 @@ Content-Disposition: attachment;
 The content type header tells us that what we're about to look at is a
 PDF.  That plus the fact that the content disposition says
 \texttt{attachment} tells us that it is a file attachment.  The content
-disposition header also contains additional header field paramters
+disposition header also contains additional header field parameters
 called \texttt{filename} and \texttt{filename*}, respectively, which is what your
 email software is going to use to determine the name of the file when
 the recipient saves it to their machine.  Annoyingly, the \texttt{filename*}
 header field parameter is not part of the MIME specification---the
-MIME specification just says that any header field parameters your
-email software chooses to create, and also that it can have as many of
-them as your email software chooses to create.  But although it is not
-actually part of the MIME specification, most email software you'll
-use will nonetheless look for that header field parameter and use it
-to determine the attachment's file name for when it gets saved to the
-recipient's machine.
+MIME specification just says that your email software can create any
+header field parameters it chooses, and also that it can have as many
+of them as your email software chooses to create.  But although it is
+not actually part of the MIME specification, most email software
+you'll use will nonetheless look for that header field parameter and
+use it to determine the attachment's file name for when it gets saved
+to the recipient's machine.
 
 After the MIME headers for the attached PDF will be the Base64-encoded
 data of the PDF itself, which will look like the above text and could
@@ -818,7 +827,7 @@ and one file attachment, whose body is a multipart MIME with one
 \texttt{text/plain} email body and one PDF file attachment body.
 
 \subsubsection{How To Convert an Outlook \texttt{.pst} to \texttt{.mbox} Format}
-\label{sec:org3035ffb}
+\label{sec:org2c373f6}
 
 At the University of Chicago, we are usually given mailboxes in one of
 two forms for accessioning: MBOX and Outlook PST.  In order to convert
@@ -833,15 +842,27 @@ the command to run \texttt{readpst} is as follows:
 $ readpst mailbox.pst
 \end{verbatim}
 
+After you run that command, \texttt{readpst} will put a copy of the original
+\texttt{.pst} file into the same directory you ran it from, called
+\texttt{Inbox.mbox}.  To rename the file to something more reasonable, run
+this command:
+
+\begin{verbatim}
+$ mv Inbox.mbox mailbox.mbox
+\end{verbatim}
+
+Now the original \texttt{.pst} and the converted \texttt{.mbox} have the same
+basename.
+
 \subsection{More Detailed Demo}
-\label{sec:org8d1864c}
+\label{sec:org2ba9d92}
 
 In the next part of the workshop, we'll redo the demo we did at the
 beginning, knowing what we now know about how emails are structured
 and how MIME multiparts allow us to attach files to them.
 
 We begin by installing Attachment Converter.  For more info on that,
-please see our \hyperref[org86feb11]{pre-workshop installation instructions}.  After the
+please see our \hyperref[org1fd8c0a]{pre-workshop installation instructions}.  After the
 installation, we'll run Attachment Converter once again on the example
 MBOX we used during the initial demo.
 
@@ -849,15 +870,36 @@ Next, we'll take a look at what Attachment Converter did to the
 attachments in our example MBOX.
 
 \subsubsection{Looking At The Output}
-\label{sec:org8b54bae}
+\label{sec:org376bd2c}
 
 We saw during the demo earlier that when we opened the converted MBOX
 in Apple Mail, the attachments appeared next to the originals.  What
 we are now in a position to do is open the converted MBOX in a text
 editor and see what it really did, looking at the raw data.
 
-Let's start with the \texttt{.doc} attachment, i.e.\@  the podcast
-transcription.  This is what the headers for the original look like:
+Let's start with the first email, featuring the \texttt{.doc} attachment.  We
+know it's going to be a MIME multipart because it features these
+headers:
+
+\begin{verbatim}
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="=-=-="
+\end{verbatim}
+
+We can see from this content type header that the boundary for the
+multipart will be \texttt{=-=-=}. If we scroll a bit further, we can see the
+first part of the MIME multipart is the prose part of the email:
+
+\begin{verbatim}
+--=-=-=
+Content-Type: text/plain
+
+I really enjoyed looking at that transcription.  Your transcriptionist
+is great.
+\end{verbatim}
+
+Next is the first file attachment, which is the \texttt{.docx} original.
+Here are the headers for it:
 
 \begin{verbatim}
 Content-Type: application/msword
@@ -909,18 +951,49 @@ information there both because Attachment Converter itself needs it,
 and because we would like future researchers to have a record of where
 converted attachments come from in the email containing them.
 
-Underneath is the 
+Scrolling down to the next attachment in this MIME multipart, we see
+the headers for the conversion to plaintext:
 
-\begin{enumerate}
-\item The Headers that \texttt{attc} inserts
-\label{sec:orged0c22c}
+\footnotesize
 
-\item The Data that \texttt{attc} inserts
-\label{sec:orgb68480c}
-\end{enumerate}
+\begin{verbatim}
+Content-Transfer-Encoding: base64
+Content-Type: text/plain
+Content-Disposition: attachment;
+        filename="Episode 146 Gaurav Venkataraman discusses memory in RNA and DNA_CONVERTED1694624788.txt
+X-Attachment-Converter: converted;
+        source-type=application/msword;
+        target-type=text/plain;
+        time-stamp=1694624788;
+        conversion-id=soffice-doc-to-txt;
+        original-file-hash=305817139
+\end{verbatim}
+
+\normalsize
+
+We can tell we're at the end of the first email in the MBOX, first
+because there is a MIME delimiter with an additional two hyphens \texttt{-{}-{}}
+after it:
+
+\begin{verbatim}
+--=-=-=--
+\end{verbatim}
+
+The other reason we know we're at the end of the first email in the
+mailbox is that the next line is a From line, i.e.\@  the
+beginning of the next email:
+
+\begin{verbatim}
+From keith@lib.uchicago.edu Wed Sep 13 16:25:31 2023
+\end{verbatim}
+
+Remember, though this From line contains sender and timestamp
+information, that is for human eyes only; the only part your email
+software pays attention to is the word From, plus the space after, to
+tell that this is the beginning of a new email.
 
 \subsection{Advanced Configuration}
-\label{sec:orgcc91458}
+\label{sec:org127a500}
 
 TBD.  
 

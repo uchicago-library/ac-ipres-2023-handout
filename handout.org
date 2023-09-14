@@ -405,7 +405,7 @@ Welcome to our workshop!  We are excited to be here.
 
 Attachment Converter is a command-line utility that batch-converts all
 attachments in an email mailbox to preservation formats.  You give it
-your email in the form on an MBOX file, and it creates a new MBOX file
+your email in the form of an MBOX file, and it creates a new MBOX file
 with copies of all the attachments in preservation formats, next to
 the original attachments in the emails from which they originated.
 
@@ -422,13 +422,11 @@ In this demo, we:
 + the example MBOX contains attachments in the following formats:
   + DOC
   + DOCX
-  + XLSX
   + JPEG
   + PDF
 + those attachments are then converted to, respectively:
   + TXT, PDF-A-1b
   + TXT, PDF-A-1b
-  + TSV, PDF-A-1b
   + TIFF
   + PDF-A-1b
 
@@ -450,11 +448,11 @@ around, it would be tricky, because it would be raw binary data.  But
 with email, the raw data are just sequences of characters you could
 read yourself, if you wanted to.
 
-The format in which an individual email is pretty standardized, but
-there are many different data formats for putting a large collection
-of individual emails together into a /mailbox/, such as *Inbox*, *Sent
+The format of an individual email is pretty standardized, but there
+are many different data formats for putting a large collection of
+individual emails together into a /mailbox/, such as *Inbox*, *Sent
 Mail*, or *Trash*.  Attachment Converter uses one of the oldest and
-most universal data formats for mailboxes, called [[https://www.loc.gov/preservation/digital/formats/fdd/fdd000383.shtml][MBOX]].  
+most universal data formats for mailboxes, called [[https://www.loc.gov/preservation/digital/formats/fdd/fdd000383.shtml][MBOX]].
 
 ** The MBOX format
 
@@ -492,8 +490,8 @@ as a string of characters, the delimiter in that example would be a
 comma and the elements of the list would be =1=, =2=, and =3=,
 respectively.
 
-In the case of an MBOX, each email is separated by a special line of
-text that is not considered to be part of the email---only part of the
+In the case of an MBOX, each email begins with a special line of text
+that is not considered to be part of the email---only part of the
 mailbox.  The rules for constructing a From line go like this:
 
 - put =From= at the beginning of the line
@@ -523,7 +521,8 @@ you're looking at is to look for a colon.  So if you see ~From~ with
 just a space, it's the MBOX delimiter, and if you see ~From:~ with a
 colon, it's an email header.
 
-So notionally, a mailbox in MBOX format looks like this:
+So a mailbox in MBOX format is just a sequence of emails with a From
+line before each one.  Notionally, it looks like this:
 
 #+begin_export latex
 \texttt{From MAILER-DAEMON Fri Jul  8 12:08:34 2011}\\
@@ -548,7 +547,8 @@ specification that are most relevant to what Attachment Converter
 does.
 
 Fundamentally, an email consists of /headers/ followed by a /body/.
-The headers function like metadata for an email; they provide an
+The headers are separated from the body by two line breaks.  The
+headers function like metadata for an email; they provide an
 informational summary about what's in the email either to the
 recipient or to the recipient's email software.  The body is the main
 part of the email, as in the part the recipient is meant to see.
@@ -620,7 +620,8 @@ them, that is the format in which it will get sent out.
 
 Let's focus on that pretty ordinary type of case. After the two
 required headers, the from header and the date header, there will be
-the following MIME version header, which is required:
+the following MIME version header, which is required if you're using
+MIME:
 
 #+begin_example
   MIME-Version: 1.0
@@ -639,16 +640,23 @@ That tells you that what you will be looking at next is a sequence of
 MIME-encoded email bodies, and what the delimiter for that sequence of
 email bodies will be.  If there are no more headers in the main email,
 then the list of headers will end with two line breaks, followed by a
-delimiter, to show that the next thing coming in our email will be the
-list of MIME headers that provide information about the first email
-body in the multipart list:
+delimiter:
 
 #+begin_example
   --name-of-boundary-someone-chose
 #+end_example
 
-What headers are those?  There could be a lot of them, but there will
-normally at least be a content type header:
+Note that the delimiter is whatever the application creating the email
+chose to name it, under the ~boundary~ header field parameter in the
+content type header, preceded by two hyphens =--=.  The final
+delimiter in the sequence will have two additional hyphens at the end
+of it, before the line break.
+
+Back to the first delimiter.  Following the first delimiter will be
+the list of MIME headers that provide information about the first
+email body in the multipart list. What headers are those?  There could
+be a lot of them, but there will normally at least be a content type
+header:
 
 #+begin_example
   Content-Type: text/plain
@@ -719,8 +727,9 @@ represent the data inside of any file as a stream of readable
 characters.
 
 This gets us to the next part of our hypothetical email.  After the
-end of the first body in the MIME multipart, we get some MIME headers
-that describe the second part:
+end of the first body in the MIME multipart (in this example, the note
+from Elmer Fudd), we get some MIME headers that describe the second
+part:
 
 #+begin_example
   Content-Type: application/pdf
@@ -733,18 +742,18 @@ that describe the second part:
 The content type header tells us that what we're about to look at is a
 PDF.  That plus the fact that the content disposition says
 =attachment= tells us that it is a file attachment.  The content
-disposition header also contains additional header field paramters
+disposition header also contains additional header field parameters
 called =filename= and =filename*=, respectively, which is what your
 email software is going to use to determine the name of the file when
 the recipient saves it to their machine.  Annoyingly, the =filename*=
 header field parameter is not part of the MIME specification---the
-MIME specification just says that any header field parameters your
-email software chooses to create, and also that it can have as many of
-them as your email software chooses to create.  But although it is not
-actually part of the MIME specification, most email software you'll
-use will nonetheless look for that header field parameter and use it
-to determine the attachment's file name for when it gets saved to the
-recipient's machine.
+MIME specification just says that your email software can create any
+header field parameters it chooses, and also that it can have as many
+of them as your email software chooses to create.  But although it is
+not actually part of the MIME specification, most email software
+you'll use will nonetheless look for that header field parameter and
+use it to determine the attachment's file name for when it gets saved
+to the recipient's machine.
 
 After the MIME headers for the attached PDF will be the Base64-encoded
 data of the PDF itself, which will look like the above text and could
@@ -779,6 +788,18 @@ the command to run =readpst= is as follows:
   $ readpst mailbox.pst
 #+end_example
 
+After you run that command, =readpst= will put a copy of the original
+=.pst= file into the same directory you ran it from, called
+=Inbox.mbox=.  To rename the file to something more reasonable, run
+this command:
+
+#+begin_example
+  $ mv Inbox.mbox mailbox.mbox
+#+end_example
+
+Now the original =.pst= and the converted =.mbox= have the same
+basename.
+
 ** More Detailed Demo
 
 In the next part of the workshop, we'll redo the demo we did at the
@@ -800,8 +821,29 @@ in Apple Mail, the attachments appeared next to the originals.  What
 we are now in a position to do is open the converted MBOX in a text
 editor and see what it really did, looking at the raw data.
 
-Let's start with the =.doc= attachment, i.e.@@latex:\@ @@ the podcast
-transcription.  This is what the headers for the original look like:
+Let's start with the first email, featuring the =.doc= attachment.  We
+know it's going to be a MIME multipart because it features these
+headers:
+
+#+begin_example
+  MIME-Version: 1.0
+  Content-Type: multipart/mixed; boundary="=-=-="
+#+end_example
+
+We can see from this content type header that the boundary for the
+multipart will be ~=-=-=~. If we scroll a bit further, we can see the
+first part of the MIME multipart is the prose part of the email:
+
+#+begin_example
+  --=-=-=
+  Content-Type: text/plain
+
+  I really enjoyed looking at that transcription.  Your transcriptionist
+  is great.
+#+end_example
+
+Next is the first file attachment, which is the =.docx= original.
+Here are the headers for it:
 
 #+begin_example
   Content-Type: application/msword
@@ -855,15 +897,91 @@ information there both because Attachment Converter itself needs it,
 and because we would like future researchers to have a record of where
 converted attachments come from in the email containing them.
 
-Underneath is the 
+Scrolling down to the next attachment in this MIME multipart, we see
+the headers for the conversion to plaintext:
 
-**** The Headers that =attc= inserts
+#+begin_export latex
+\footnotesize
+#+end_export
 
-**** The Data that =attc= inserts
+#+begin_example
+  Content-Transfer-Encoding: base64
+  Content-Type: text/plain
+  Content-Disposition: attachment;
+          filename="Episode 146 Gaurav Venkataraman discusses memory in RNA and DNA_CONVERTED1694624788.txt
+  X-Attachment-Converter: converted;
+          source-type=application/msword;
+          target-type=text/plain;
+          time-stamp=1694624788;
+          conversion-id=soffice-doc-to-txt;
+          original-file-hash=305817139
+#+end_example
+
+#+begin_export latex
+\normalsize
+#+end_export
+
+We can tell we're at the end of the first email in the MBOX, first
+because there is a MIME delimiter with an additional two hyphens =--=
+after it:
+
+#+begin_example
+--=-=-=--
+#+end_example
+
+The other reason we know we're at the end of the first email in the
+mailbox is that the next line is a From line, i.e.@@latex:\@ @@ the
+beginning of the next email:
+
+#+begin_example
+  From keith@lib.uchicago.edu Wed Sep 13 16:25:31 2023
+#+end_example
+
+Remember, though this From line contains sender and timestamp
+information, that is for human eyes only; the only part your email
+software pays attention to is the word From, plus the space after, to
+tell that this is the beginning of a new email.
 
 ** Advanced Configuration
 
-TBD.  
+Attachment Converter calls out to freely available external utilities
+to perform file conversions.  The external utilities it uses by
+default are:
+
+- =pandoc=
+- =libreoffice=
+- =pdftotext=
+- =vips=
+
+The conversions it performs by default are:
+
+- PDF @@latex:\rightarrow @@ plaintext
+- DOC @@latex:\rightarrow @@ plaintext
+- DOCX @@latex:\rightarrow @@ PDF-A-1b
+- XLS @@latex:\rightarrow @@ TSV
+- GIF @@latex:\rightarrow @@ TIFF
+- BMP @@latex:\rightarrow @@ TIFF
+- JPEG @@latex:\rightarrow @@ TIFF
+
+However, Attachment Converter also allows you to customize the
+conversions it performs with external utilities.  You can set it up to
+use the utilities you already have installed to perform new
+conversions, you can modify one of the default conversion to use a
+different app of your choice, and you can also set it up to use a new
+app of your choice to convert a new type of attachment.
+
+Setting Attachment Converter up with a custom configuration requires
+more computer expertise than using it with its default, out-of-the-box
+configuration.  We won't get into the details of how to set up a new
+Attachment Converter configuration from scratch, but we will:
+
+- customize the configuration in front of you now, so that you can get
+  an intuitive feel for how much work is involved and what it
+  generally looks like
+- tell you who to contact at your university for help setting this up,
+  if you think you might want to do it
+
+** TBD part
 
 We provided this handout early so that if you wanted to follow the
 setup instructions before the workshop, you could.  But we're still
