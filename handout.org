@@ -54,10 +54,10 @@ working at the command prompt.
 In the next section, we'll go through how to install the software
 you'll need if you want to participate in the workshop by typing along
 on your own machines.  If you're planning to simply attend, watch,
-listen, and ask questions, please feel free to skip to [[workshop][section]]
-[[workshop]], which is what we'll be working off of during the
-workshop---you won't need to set anything up on your computer in
-advance.
+listen, and ask questions, please feel free to skip to
+[[workshop][section]] [[workshop]], which is what we'll be working off
+of during the workshop---you won't need to set anything up on your
+computer in advance.
 
 * Advance Preparation <<advance>>
 
@@ -948,22 +948,22 @@ Attachment Converter calls out to freely available external utilities
 to perform file conversions.  The external utilities it uses by
 default are:
 
-- =pandoc=
-- =libreoffice=
-- =pdftotext=
-- =vips=
+- [[https://pandoc.org/][=pandoc=]]
+- [[https://www.libreoffice.org/][=libreoffice=]]
+- [[https://www.xpdfreader.com/pdftotext-man.html][=pdftotext=]]
+- [[https://www.libvips.org/][=vips=]]
 
 The conversions it performs by default are:
 
-- PDF > plaintext
-- DOC > plaintext
-- DOC > PDF-A-1b
-- DOCX > plaintext
-- DOCX > PDF-A-1b
-- XLS > TSV
-- GIF > TIFF
-- BMP > TIFF
-- JPEG > TIFF 
+- PDF $\rightarrow$ plaintext
+- DOC $\rightarrow$ plaintext
+- DOC $\rightarrow$ PDF-A-1b
+- DOCX $\rightarrow$ plaintext
+- DOCX $\rightarrow$ PDF-A-1b
+- XLS $\rightarrow$ TSV
+- GIF $\rightarrow$ TIFF
+- BMP $\rightarrow$ TIFF
+- JPEG $\rightarrow$ TIFF 
 
 However, Attachment Converter also allows you to customize the
 conversions it performs with external utilities.  You can set it up to
@@ -982,6 +982,71 @@ Attachment Converter configuration from scratch, but we will:
   generally looks like
 - tell you who to contact at your university for help setting this up,
   if you think you might want to do it
+
+** Configuration File
+
+With no special configuration, Attachment Converter performs the
+conversions described above on the input MBOX.  However, if you create
+a configuration file, instead of performing the default conversions,
+Attachment Converter will perform the conversions the configuration
+file says to perform.
+
+The easiest way to create a custom configuration is to go into the
+directory where you cloned the source code to and run our script for
+generating a configuration file:
+
+#+begin_example
+  $ cd ~/src/attachment-converter
+  $ ./make-config.sh > ~/.acrc
+#+end_example
+
+That second command will generate a configuration identical to what it
+does by default and put that configuration in a file called =.acrc= in
+your home directory. Opening that file up, it's a sequence of entries
+that look like this:
+
+#+begin_export latex
+\footnotesize
+#+end_export
+
+#+begin_example
+  %source_type application/pdf
+  %target_type application/pdf
+  %shell_command /home/teichman/.config/attachment-converter/scripts/pdf2archive-wrapper.sh
+  %id pdf2archive-pdf-to-pdfa
+#+end_example
+
+#+begin_export latex
+\normalsize
+#+end_export
+
+Each entry has four fields: =source_type=, =target_type=,
+=shell_command=, and =id=.  Their respective purposes are as follows:
+
+- =source_type= is the name of the MIME type that Attachment Converter
+  will flag for conversion, whenever it encounters this MIME type in
+  the input mailbox
+- =target_type= is the name of the MIME type that Attachment Converter
+  will convert every attachment it finds that is of MIME type
+  =source_type= to
+- =shell command= is the path toward the UNIX shell script that
+  Attachment Converter will use to invoke an external utility to
+  perform a conversion
+- =id= is the name that Attachment Converter will use to refer to this
+  conversion: in this example, "convert all PDFs to PDF-A-s will be
+  nicknamed =pdf2archive-pdf-to-pdfa=
+
+That's all that needs to go into an individual entry.  The
+configuration file is a list of these entries, each of which is
+separated by two line breaks.
+
+If you've created a configuration file with this format called =.acrc=
+located in your home directory, Attachment Converter will find it
+there and use it instead of the default configuration.
+
+** Creating A Custom Conversion
+
+We thought it would be fun to show you how to add 
 
 ** TBD part
 
