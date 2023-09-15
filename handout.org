@@ -19,7 +19,7 @@
 #+LATEX_HEADER: \usepackage[dvipsnames]{xcolor}
 #+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
 #+LATEX_HEADER: \usepackage{mathpazo}
-
+#+LATEX_HEADER: \usepackage{amssymb}
 
 Welcome to the Attachment Converter Workshop at iPres 2023!  In this
 session, we'll walk you through our new open source application,
@@ -955,13 +955,15 @@ default are:
 
 The conversions it performs by default are:
 
-- PDF @@latex:\rightarrow @@ plaintext
-- DOC @@latex:\rightarrow @@ plaintext
-- DOCX @@latex:\rightarrow @@ PDF-A-1b
-- XLS @@latex:\rightarrow @@ TSV
-- GIF @@latex:\rightarrow @@ TIFF
-- BMP @@latex:\rightarrow @@ TIFF
-- JPEG @@latex:\rightarrow @@ TIFF
+- PDF > plaintext
+- DOC > plaintext
+- DOC > PDF-A-1b
+- DOCX > plaintext
+- DOCX > PDF-A-1b
+- XLS > TSV
+- GIF > TIFF
+- BMP > TIFF
+- JPEG > TIFF 
 
 However, Attachment Converter also allows you to customize the
 conversions it performs with external utilities.  You can set it up to
